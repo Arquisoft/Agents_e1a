@@ -84,8 +84,10 @@ public class MainTest {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changePassword";
 		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-				+ "<ChangeInfoResponse><message>contraseÃ±a actualizada correctamente</message>"
-				+ "<agent>isabel@gmail.com</agent></ChangeInfoResponse>";
+				+ "<ChangeInfoResponse>"
+				+"<agent>isabel@gmail.com</agent>"
+				+ "<message>contraseÃ±a actualizada correctamente</message>"
+				+ "</ChangeInfoResponse>";
 
 		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
 		interceptors.add(new AcceptInterceptor());
