@@ -14,7 +14,7 @@ Skeleton of participants module
 - Fernando del Barrio Romano (UO252367)
 - David Chillón Sánchez
 - Paula Claro Heres (UO252315)
-- David Rico Díaz
+- David Rico Díaz (UO250898)
 - Joaquín Ceballos Gómez (UO250687)
 
 
