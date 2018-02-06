@@ -11,7 +11,7 @@ Skeleton of participants module
 
 # Current authors
 
-- Fernando del Barrio Romano
+- Fernando del Barrio Romano (UO252367)
 - David Chillón Sánchez
 - Paula Claro Heres (UO252315)
 - David Rico Díaz
