@@ -5,7 +5,7 @@
 
 # agents_e1a
 
-Skeleton of participants module
+Skeleton of agents module
 
 # Current authors
 
