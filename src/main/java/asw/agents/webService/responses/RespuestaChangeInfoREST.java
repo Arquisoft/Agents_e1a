@@ -22,13 +22,13 @@ public class RespuestaChangeInfoREST {
 		return agent;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
 	@XmlElement
 	public void setAgent(String agent) {
 		this.agent = agent;
-	}
-
-	public String getMessage() {
-		return message;
 	}
 
 	@XmlElement

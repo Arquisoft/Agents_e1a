@@ -22,31 +22,6 @@ public class ChangeInfoHTMLController {
 	@Autowired
 	private UpdateInfo updateInfo;
 
-	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
-	public String changeInfo() {
-		return "changeInfo";
-	}
-
-	@RequestMapping(value = "/confirmPassword", method = RequestMethod.POST)
-	public String changePassword(HttpSession session, @RequestParam String password,
-			@RequestParam String newPassword, Model model) {
-		Assert.isPasswordEmpty(password);
-		Assert.isPasswordEmpty(newPassword);
-		Assert.isSamePassword(password, newPassword);
-
-		// Agent que se ha logeado antes
-		Agent p = (Agent) session.getAttribute("agent");
-		Assert.isAgentNull(p);
-		Assert.isPasswordCorrect(password, p);
-
-		// Actualizo sus datos
-		updateInfo.updatePassword(p, password, newPassword);
-
-		// Mensaje a mostrar en HTML
-		model.addAttribute("info", "Contraseña actualizada correctamente");
-		return "datosAgent";
-	}
-	
 	@RequestMapping(value = "/confirmEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model) {
 		Assert.isEmailEmpty(email);
@@ -62,6 +37,31 @@ public class ChangeInfoHTMLController {
 
 		// Mensaje a mostrar en HTML
 		model.addAttribute("info", "Email actualizado correctamente");
+		return "datosAgent";
+	}
+
+	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
+	public String changeInfo() {
+		return "changeInfo";
+	}
+
+	@RequestMapping(value = "/confirmPassword", method = RequestMethod.POST)
+	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
+			Model model) {
+		Assert.isPasswordEmpty(password);
+		Assert.isPasswordEmpty(newPassword);
+		Assert.isSamePassword(password, newPassword);
+
+		// Agent que se ha logeado antes
+		Agent p = (Agent) session.getAttribute("agent");
+		Assert.isAgentNull(p);
+		Assert.isPasswordCorrect(password, p);
+
+		// Actualizo sus datos
+		updateInfo.updatePassword(p, password, newPassword);
+
+		// Mensaje a mostrar en HTML
+		model.addAttribute("info", "Contraseña actualizada correctamente");
 		return "datosAgent";
 	}
 

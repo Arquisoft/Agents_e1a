@@ -3,9 +3,9 @@ package asw.agents.webService.responses.errors;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="User password is required")
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "User password is required")
 public class RequiredPasswordErrorResponse extends ErrorResponse {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override

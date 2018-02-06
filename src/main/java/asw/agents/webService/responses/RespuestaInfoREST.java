@@ -7,17 +7,18 @@ import asw.agents.util.Utilidades;
 import asw.dbManagement.model.Agent;
 
 @XmlRootElement(name = "agent")
-public class RespuestaInfoREST {	
-	
+public class RespuestaInfoREST {
+
 	private String firstName;
 	private String lastName;
 	private int edad;
 	private String ID;
 	private String email;
-	
-	public RespuestaInfoREST() {}
-	
-	public RespuestaInfoREST(Agent agent){
+
+	public RespuestaInfoREST() {
+	}
+
+	public RespuestaInfoREST(Agent agent) {
 		setFirstName(agent.getNombre());
 		setLastName(agent.getApellidos());
 		setEdad(Utilidades.getEdad(agent.getFechaNacimiento()));
@@ -25,13 +26,20 @@ public class RespuestaInfoREST {
 		setEmail(agent.getEmail());
 	}
 
+	public int getEdad() {
+		return edad;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
 
-	@XmlElement
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public String getID() {
+		return ID;
 	}
 
 	public String getLastName() {
@@ -39,21 +47,18 @@ public class RespuestaInfoREST {
 	}
 
 	@XmlElement
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public int getEdad() {
-		return edad;
-	}
-
-	@XmlElement
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 
-	public String getID() {
-		return ID;
+	@XmlElement
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@XmlElement
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	@XmlElement
@@ -61,13 +66,9 @@ public class RespuestaInfoREST {
 		ID = iD;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
 	@XmlElement
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 }

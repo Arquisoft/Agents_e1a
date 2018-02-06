@@ -24,11 +24,6 @@ public class GetAgentInfoHTMLController {
 	@Autowired
 	private GetAgent getAgent;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String inicalicerLogin(Model model) {
-		return "login";
-	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String getLogin(HttpSession session, @RequestParam String email, @RequestParam String password,
 			Model model) {
@@ -47,8 +42,8 @@ public class GetAgentInfoHTMLController {
 		if (!agent.isAdmin() && !agent.isPolitician()) {
 			session.setAttribute("edad", Utilidades.getEdad(agent.getFechaNacimiento()));
 			return "datosAgent";
-		} else{
-			if(agent.isAdmin())
+		} else {
+			if (agent.isAdmin())
 				return "dashboardAdmin";
 			else
 				return "dashboardPolitician";
@@ -62,5 +57,10 @@ public class GetAgentInfoHTMLController {
 		model.addAttribute("error", excep.getMessageStringFormat());
 
 		return "error";
+	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String inicalicerLogin(Model model) {
+		return "login";
 	}
 }

@@ -40,8 +40,8 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 		Assert.isPasswordCorrect(peticion.getPassword(), agent);
 
 		/*
-		 * Añadimos la información al modelo, para que se muestre en la pagina
-		 * html: datosAgent
+		 * Añadimos la información al modelo, para que se muestre en la pagina html:
+		 * datosAgent
 		 */
 
 		return new ResponseEntity<RespuestaInfoREST>(new RespuestaInfoREST(agent), HttpStatus.OK);

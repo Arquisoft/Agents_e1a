@@ -5,19 +5,11 @@ public class PeticionInfoREST {
 	private String login;
 	private String password;
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public PeticionInfoREST() {
 
 	}
-	
-	public PeticionInfoREST(String login,String password){
+
+	public PeticionInfoREST(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
@@ -28,6 +20,14 @@ public class PeticionInfoREST {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

@@ -5,7 +5,7 @@ public class PeticionChangePasswordREST {
 	private String email;
 	private String password;
 	private String newPassword;
-	
+
 	public PeticionChangePasswordREST() {
 
 	}
@@ -16,25 +16,25 @@ public class PeticionChangePasswordREST {
 		this.newPassword = newPassword;
 		this.email = email;
 	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
-	}
-	
 	public String getEmail() {
 		return email;
+	}
+
+	public String getNewPassword() {
+		return newPassword;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public String getNewPassword() {
-		return newPassword;
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
