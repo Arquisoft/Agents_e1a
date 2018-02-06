@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/Arquisoft/participants1a/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/participants1a)
 
 
-# participants1a
+# agents1a
 
 [![Join the chat at https://gitter.im/Arquisoft/participants1a](https://badges.gitter.im/Arquisoft/participants1a.svg)](https://gitter.im/Arquisoft/participants1a?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -13,7 +13,7 @@ Skeleton of participants module
 
 - Fernando del Barrio Romano
 - David Chillón Sánchez
-- Paula Claro Heres
+- Paula Claro Heres (UO252315)
 - David Rico Díaz
 - Joaquín Ceballos Gómez (UO250687)
 
