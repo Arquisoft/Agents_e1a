@@ -1,6 +1,7 @@
 package asw.dbManagement.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ public class Agent {
 
 	// Atributos del agente
 	private String nombre;
+	@Embedded
 	private Location location;
 	@Column(unique = true)
 	private String email;
@@ -30,7 +32,7 @@ public class Agent {
 	/**
 	 * Constructor vacío (ya que es para mapear)
 	 */
-	private Agent() {
+	Agent() {
 	}
 
 	/**

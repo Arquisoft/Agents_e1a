@@ -1,9 +1,15 @@
 package asw.agents.util;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Location {
 	private String name;
 	private double longitude;
 	private double latitude;
+
+	Location() {
+	}
 
 	// create and initialize a point with given name and
 	// (latitude, longitude) specified in degrees
