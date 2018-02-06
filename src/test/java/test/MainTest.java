@@ -125,8 +125,10 @@ public class MainTest {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changeEmail";
 		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-				+ "<ChangeInfoResponse><message>email actualizado correctamente</message>"
-				+ "<agent>carmen@yahoo.com</agent></ChangeInfoResponse>";
+				+ "<ChangeInfoResponse>"
+				+ "<agent>carmen@yahoo.com</agent>"
+				+ "<message>email actualizado correctamente</message>"
+				+ "</ChangeInfoResponse>";
 
 		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
 		interceptors.add(new AcceptInterceptor());
