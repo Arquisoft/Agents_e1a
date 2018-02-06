@@ -9,7 +9,16 @@
 
 Skeleton of participants module
 
-# Authors
+# Current authors
+
+- Fernando del Barrio Romano
+- David Chillón Sánchez
+- Paula Claro Heres
+- David Rico Díaz
+- Joaquín Ceballos Gómez (UO250687)
+
+
+# Last year authors
 
 - David Lorenzo González (UO244795)
 - Martín Peláez Díaz (UO236974)
