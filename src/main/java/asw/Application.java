@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import asw.agents.util.Location;
 import asw.dbManagement.model.Agent;
 import asw.dbManagement.repository.AgentRepository;
 
@@ -24,14 +25,11 @@ public class Application {
 
 	@Bean
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
-		
-		return null;/*
 
 		return (args) -> {
 			// Inserción en la base de datos
-			repository.save(new Agent("Paco", "Gómez", "123456", fecha, "paco@hotmail.com", "12345678A", "Calle Uría",
-					"Española", false, false));
+			//repository.save(new Agent("", null, "a@s.es", "pass", (byte) 1, "ident"));
 
-		};*/
+		};
 	}
 }

@@ -30,7 +30,7 @@ public class Agent {
 	/**
 	 * Constructor vacío (ya que es para mapear)
 	 */
-	Agent() {
+	private Agent() {
 	}
 
 	/**
