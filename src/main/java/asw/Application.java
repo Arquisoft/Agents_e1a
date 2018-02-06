@@ -28,6 +28,8 @@ public class Application {
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
 		// Formato para la fecha
 		DateFormat formatter1 = new SimpleDateFormat("mm/DD/yyyy");
+		
+		return null;/*
 
 		return (args) -> {
 			// Obtención de fecha
@@ -69,5 +71,6 @@ public class Application {
 					"Calle Asturias", "Española", false, true));
 
 		};
+		*/
 	}
 }

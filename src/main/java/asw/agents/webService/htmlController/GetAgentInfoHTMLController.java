@@ -39,15 +39,7 @@ public class GetAgentInfoHTMLController {
 
 		session.setAttribute("agent", agent);
 
-		if (!agent.isAdmin() && !agent.isPolitician()) {
-			session.setAttribute("edad", Utilidades.getEdad(agent.getFechaNacimiento()));
-			return "datosAgent";
-		} else {
-			if (agent.isAdmin())
-				return "dashboardAdmin";
-			else
-				return "dashboardPolitician";
-		}
+		return "datosAgent";
 
 	}
 
