@@ -34,11 +34,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import asw.Application;
-import asw.agents.webService.request.PeticionChangeEmailREST;
-import asw.agents.webService.request.PeticionChangePasswordREST;
-import asw.agents.webService.request.PeticionInfoREST;
-import asw.dbManagement.GetAgent;
-import asw.dbManagement.model.Agent;
+import asw.agents.webservice.request.PeticionChangeEmailREST;
+import asw.agents.webservice.request.PeticionChangePasswordREST;
+import asw.agents.webservice.request.PeticionInfoREST;
+import asw.dbmanagement.GetAgent;
+import asw.dbmanagement.model.Agent;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -47,7 +47,14 @@ import asw.dbManagement.model.Agent;
 @IntegrationTest({ "server.port=0" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MainTest {
-
+	
+	@Value("${local.server.port}")
+	private int port;
+	private URL base;
+	private RestTemplate template;
+	@Autowired
+	private GetAgent getAgent;
+	
 	// Cabecera HTTP para pedir respuesta en XML
 	public class AcceptInterceptor implements ClientHttpRequestInterceptor {
 		@Override
@@ -59,14 +66,6 @@ public class MainTest {
 		}
 	}
 
-	@Value("${local.server.port}")
-	private int port;
-	private URL base;
-
-	private RestTemplate template;
-
-	@Autowired
-	private GetAgent getAgent;
 
 	@Test
 	public void correctPasswordChange() {
@@ -83,10 +82,8 @@ public class MainTest {
 	public void correctPasswordChangeXML() {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changePassword";
-		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-				+ "<ChangeInfoResponse>"
-				+"<agent>isabel@gmail.com</agent>"
-				+ "<message>contraseÃ±a actualizada correctamente</message>"
+		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "<ChangeInfoResponse>"
+				+ "<agent>isabel@gmail.com</agent>" + "<message>contraseÃ±a actualizada correctamente</message>"
 				+ "</ChangeInfoResponse>";
 
 		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
@@ -124,10 +121,8 @@ public class MainTest {
 	public void emailChangeCorrectXML() {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changeEmail";
-		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-				+ "<ChangeInfoResponse>"
-				+ "<agent>carmen@yahoo.com</agent>"
-				+ "<message>email actualizado correctamente</message>"
+		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "<ChangeInfoResponse>"
+				+ "<agent>carmen@yahoo.com</agent>" + "<message>email actualizado correctamente</message>"
 				+ "</ChangeInfoResponse>";
 
 		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
