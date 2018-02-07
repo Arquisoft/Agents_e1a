@@ -1,4 +1,4 @@
-package asw.agents.webservice.htmlController;
+package asw.agents.webservice.htmlcontroller;
 
 import javax.servlet.http.HttpSession;
 
