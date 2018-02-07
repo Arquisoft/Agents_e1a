@@ -12,8 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import asw.dbManagement.model.Agent;
-import asw.dbManagement.repository.AgentRepository;
+import asw.dbmanagement.model.Agent;
+import asw.dbmanagement.repository.AgentRepository;
 
 @EnableAutoConfiguration
 @ComponentScan

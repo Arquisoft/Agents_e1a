@@ -2,8 +2,8 @@ package asw.agents;
 
 import org.springframework.http.ResponseEntity;
 
-import asw.agents.webService.request.PeticionInfoREST;
-import asw.agents.webService.responses.RespuestaInfoREST;
+import asw.agents.webservice.request.PeticionInfoREST;
+import asw.agents.webservice.responses.RespuestaInfoREST;
 
 public interface GetAgentInfo {
 
