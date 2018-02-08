@@ -4,9 +4,18 @@ public class PeticionInfoREST {
 
 	private String login;
 	private String password;
+	private byte kind;
 
 	public PeticionInfoREST() {
 
+	}
+
+	public byte getKind() {
+		return kind;
+	}
+
+	public void setKind(byte kind) {
+		this.kind = kind;
 	}
 
 	public PeticionInfoREST(String login, String password) {
