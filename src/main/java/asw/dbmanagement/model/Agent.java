@@ -1,12 +1,13 @@
 package asw.dbmanagement.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import asw.agents.util.Location;
 
 @Entity
 @Table(name = "Agent")
@@ -19,18 +20,15 @@ public class Agent {
 
 	// Atributos del agente
 	private String nombre;
-	private String apellidos;
-	private String password;
-	private Date fechaNacimiento;
+	// @Embedded
+	// private Location location;
+	private String location;
 	@Column(unique = true)
 	private String email;
 	@Column(unique = true)
-	private String DNI;
-	private String direccion;
-	private String nacionalidad;
-
-	private boolean isAdmin;
-	private boolean isPolitician;
+	private String identifier;
+	private String password;
+	private String kind;
 
 	/**
 	 * Constructor vacío (ya que es para mapear)
@@ -39,30 +37,22 @@ public class Agent {
 	}
 
 	/**
-	 * Constructor
-	 * 
 	 * @param nombre
-	 * @param apellidos
-	 * @param password
-	 * @param fechaNacimiento
+	 * @param location
 	 * @param email
-	 * @param dNI
-	 * @param direccion
-	 * @param nacionalidad
+	 * @param password
+	 * @param kind
+	 * @param identifier
 	 */
-	public Agent(String nombre, String apellidos, String password, Date fechaNacimiento, String email, String dNI,
-			String direccion, String nacionalidad, boolean isAdmin, boolean isPolitician) {
+	public Agent(String nombre, /* Location */String location, String email, String password, String kind,
+			String identifier) {
 		super();
 		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.password = password;
-		this.fechaNacimiento = fechaNacimiento;
+		this.location = location;
 		this.email = email;
-		this.DNI = dNI;
-		this.direccion = direccion;
-		this.nacionalidad = nacionalidad;
-		this.isAdmin = isAdmin;
-		this.isPolitician = isPolitician;
+		this.password = password;
+		this.kind = kind;
+		this.identifier = identifier;
 	}
 
 	@Override
@@ -82,32 +72,12 @@ public class Agent {
 		return true;
 	}
 
-	public String getApellidos() {
-		return apellidos;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public String getDNI() {
-		return DNI;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
 	public Long getId() {
 		return id;
-	}
-
-	public String getNacionalidad() {
-		return nacionalidad;
 	}
 
 	public String getNombre() {
@@ -126,18 +96,6 @@ public class Agent {
 		return result;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public boolean isPolitician() {
-		return isPolitician;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -146,15 +104,22 @@ public class Agent {
 		this.password = password;
 	}
 
-	public void setPolitician(boolean isPolitician) {
-		this.isPolitician = isPolitician;
+	public /* Location */String getLocation() {
+		return location;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public String getIdentifier() {
+		return identifier;
 	}
 
 	@Override
 	public String toString() {
-		return "Agent [nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento
-				+ ", email=" + email + ", DNI=" + DNI + ", direccion=" + direccion + ", nacionalidad=" + nacionalidad
-				+ ", isAdmin=" + isAdmin + ", isPolitician=" + isPolitician + "]";
+		return "Agent [id=" + id + ", nombre=" + nombre + ", location=" /* + location */ + ", email=" + email
+				+ ", identifier=" + identifier + ", password=" + password + ", kind=" + kind + "]";
 	}
 
 }

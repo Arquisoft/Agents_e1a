@@ -1,54 +1,60 @@
 package asw.agents.webservice.responses;
 
+import java.io.IOException;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import asw.agents.util.Utilidades;
+import asw.agents.util.KindManager;
 import asw.dbmanagement.model.Agent;
-
 @XmlRootElement(name = "agent")
 public class RespuestaInfoREST {
 
-	private String firstName;
-	private String lastName;
-	private int edad;
-	private String ID;
+	private String name;
+	private /* Location */String location;
 	private String email;
+	private String id;
+	private String kind;
+	private int kindCode;
 
 	public RespuestaInfoREST() {
 	}
 
 	public RespuestaInfoREST(Agent agent) {
-		setFirstName(agent.getNombre());
-		setLastName(agent.getApellidos());
-		setEdad(Utilidades.getEdad(agent.getFechaNacimiento()));
-		setID(agent.getDNI());
+		setName(agent.getNombre());
+		setLocation(agent.getLocation());
 		setEmail(agent.getEmail());
-	}
-
-	public int getEdad() {
-		return edad;
+		setId(agent.getIdentifier());
+		setKind(agent.getKind());
+		try {
+			setKindCode(new KindManager().getKindCode(kind));
+		} catch (IOException e) {
+			// TODO lanzar exepción ??
+		}
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getId() {
+		return id;
 	}
 
-	public String getID() {
-		return ID;
+	public String getKind() {
+		return kind;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public int getKindCode() {
+		return kindCode;
 	}
 
-	@XmlElement
-	public void setEdad(int edad) {
-		this.edad = edad;
+	public /* Location */String getLocation() {
+		return location;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	@XmlElement
@@ -56,19 +62,25 @@ public class RespuestaInfoREST {
 		this.email = email;
 	}
 
-	@XmlElement
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public void setKindCode(int kindCode) {
+		this.kindCode = kindCode;
+	}
+
+	public void setLocation(/* Location */String location) {
+		this.location = location;
 	}
 
 	@XmlElement
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	@XmlElement
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

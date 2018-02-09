@@ -18,4 +18,6 @@ public interface AgentRepository extends JpaRepository<Agent, Long> {
 	 */
 	public Agent findByEmail(String email);
 
+	public Agent findByIdentifier(String identificador);
+
 }

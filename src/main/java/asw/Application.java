@@ -3,8 +3,6 @@ package asw;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import asw.agents.util.Location;
 import asw.dbmanagement.model.Agent;
 import asw.dbmanagement.repository.AgentRepository;
 
@@ -26,48 +25,13 @@ public class Application {
 
 	@Bean
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
-		// Formato para la fecha
-		DateFormat formatter1 = new SimpleDateFormat("mm/DD/yyyy");
 
 		return (args) -> {
-			// Obtención de fecha
-			Date fecha = formatter1.parse("08/16/1970");
-			// Inserción en la base de datos
-			repository.save(new Agent("Paco", "Gómez", "123456", fecha, "paco@hotmail.com", "12345678A", "Calle Uría",
-					"Española", false, false));
-
-			// Obtención de fecha
-			Date fecha2 = formatter1.parse("02/23/1975");
-			// Inserción en la base de datos
-			repository.save(new Agent("Pepe", "Fernández", "123456", fecha2, "pepe@gmail.com", "87654321B",
-					"Calle Principal", "Española", false, false));
-
-			// Obtención de fecha
-			Date fecha3 = formatter1.parse("08/16/1970");
-			// Inserción en la base de datos
-			repository.save(new Agent("Carmen", "López", "123456", fecha3, "carmen@yahoo.com", "11223344C",
-					"Calle Calvo Sotelo", "Española", false, false));
-
-			// Obtención de fecha
-			Date fecha4 = formatter1.parse("02/23/1975");
-			// Inserción en la base de datos
-			repository.save(new Agent("Isabel", "Rodríguez", "123456", fecha4, "isabel@gmail.com", "22334455D",
-					"Avenida Galicia", "Española", false, false));
-
-			// ADMIN
-			// Obtención de fecha
-			Date fecha5 = formatter1.parse("02/23/1975");
-			// Inserción en la base de datos
-			repository.save(new Agent("María", "Sánchez", "123456", fecha5, "maria@gmail.com", "33445566E",
-					"Avenida Santander", "Española", true, false));
-
-			// POLITICO
-			// Obtención de fecha
-			Date fecha6 = formatter1.parse("02/23/1975");
-			// Inserción en la base de datos
-			repository.save(new Agent("Jose", "Ballesteros", "123456", fecha6, "jose@gmail.com", "44556677F",
-					"Calle Asturias", "Española", false, true));
-
+			Agent agent = repository.save(new Agent("nombre", /* new Location(1, 2) */"1,2", "nombre@uniovi.es",
+					"password", "Person", "usuario"));
+			System.out.println("Se han introducido el agente: " + agent + "\n\n");
+			System.out.println("agentes en la base de datos: ");
+			repository.findAll().stream().forEach(a -> System.out.println(a));
 		};
 	}
 }

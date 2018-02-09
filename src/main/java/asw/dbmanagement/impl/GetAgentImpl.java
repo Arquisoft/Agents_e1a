@@ -17,14 +17,9 @@ public class GetAgentImpl implements GetAgent {
 		this.repository = repository;
 	}
 
-	/**
-	 * Método que devuelve el agente buscado por email Hace uso del método
-	 * findByEmail (mapeador)
-	 */
 	@Override
-	public Agent getAgent(String email) {
-
-		return this.repository.findByEmail(email);
+	public Agent getByIdentifier(String identificador) {
+		return this.repository.findByIdentifier(identificador);
 	}
 
 }

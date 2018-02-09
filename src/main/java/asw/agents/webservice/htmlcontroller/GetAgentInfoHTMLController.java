@@ -1,4 +1,4 @@
-package asw.agents.webservice.htmlController;
+package asw.agents.webservice.htmlcontroller;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import asw.agents.util.Assert;
-import asw.agents.util.Utilidades;
 import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.dbmanagement.GetAgent;
 import asw.dbmanagement.model.Agent;
@@ -28,26 +27,24 @@ public class GetAgentInfoHTMLController {
 	public String getLogin(HttpSession session, @RequestParam String email, @RequestParam String password,
 			Model model) {
 
-		Assert.isEmailEmpty(email);
-		Assert.isEmailValid(email);
-		Assert.isPasswordEmpty(password);
+		// TODO de momento se pasan de estas conprobaciones
+		// Assert.isEmailEmpty(email);
+		// Assert.isEmailValid(email);
+		// Assert.isPasswordEmpty(password);
 
-		Agent agent = getAgent.getAgent(email);
+		// System.out.println("hola");
+
+		// TODO
+		Agent agent = getAgent.getByIdentifier(null);
+
+		System.out.println(agent);
 
 		Assert.isAgentNull(agent);
 		Assert.isPasswordCorrect(password, agent);
 
 		session.setAttribute("agent", agent);
 
-		if (!agent.isAdmin() && !agent.isPolitician()) {
-			session.setAttribute("edad", Utilidades.getEdad(agent.getFechaNacimiento()));
-			return "datosAgent";
-		} else {
-			if (agent.isAdmin())
-				return "dashboardAdmin";
-			else
-				return "dashboardPolitician";
-		}
+		return "datosAgent";
 
 	}
 
