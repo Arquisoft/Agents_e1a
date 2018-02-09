@@ -4,23 +4,24 @@ public class PeticionInfoREST {
 
 	private String login;
 	private String password;
-	private byte kind;
+	private int kind;
 
 	public PeticionInfoREST() {
 
 	}
 
-	public byte getKind() {
+	public int getKind() {
 		return kind;
 	}
 
-	public void setKind(byte kind) {
+	public void setKind(int kind) {
 		this.kind = kind;
 	}
 
-	public PeticionInfoREST(String login, String password) {
+	public PeticionInfoREST(String login, String password, int kind) {
 		this.login = login;
 		this.password = password;
+		this.kind = kind;
 	}
 
 	public String getLogin() {
