@@ -24,10 +24,10 @@ public class Agent {
 	private Location location;
 	@Column(unique = true)
 	private String email;
-	private String password;
-	private byte kind;
 	@Column(unique = true)
 	private String identifier;
+	private String password;
+	private byte kind;
 
 	/**
 	 * Constructor vacío (ya que es para mapear)

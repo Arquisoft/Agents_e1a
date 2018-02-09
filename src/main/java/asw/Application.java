@@ -27,7 +27,7 @@ public class Application {
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
 
 		return (args) -> {
-			repository.save(new Agent("", new Location(1,2), "a@s.es", "pass", (byte) 1, "ident"));
+			repository.save(new Agent("usuario", new Location(1,2), "a@s.es", "password", (byte) 1, "ident"));
 		};
 	}
 }
