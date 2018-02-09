@@ -1,14 +1,14 @@
 package asw.agents.factory;
 
-import asw.agents.webService.responses.errors.ErrorResponse;
-import asw.agents.webService.responses.errors.IncorrectPasswordErrorResponse;
-import asw.agents.webService.responses.errors.PasswordDoNotMatchErrorResponse;
-import asw.agents.webService.responses.errors.RequiredEmailErrorResponse;
-import asw.agents.webService.responses.errors.RequiredPasswordErrorResponse;
-import asw.agents.webService.responses.errors.SameEmailErrorResponse;
-import asw.agents.webService.responses.errors.UnknownErrorResponse;
-import asw.agents.webService.responses.errors.UserNotFoundResponse;
-import asw.agents.webService.responses.errors.WrongEmailStyleErrorResponse;
+import asw.agents.webservice.responses.errors.ErrorResponse;
+import asw.agents.webservice.responses.errors.IncorrectPasswordErrorResponse;
+import asw.agents.webservice.responses.errors.PasswordDoNotMatchErrorResponse;
+import asw.agents.webservice.responses.errors.RequiredEmailErrorResponse;
+import asw.agents.webservice.responses.errors.RequiredPasswordErrorResponse;
+import asw.agents.webservice.responses.errors.SameEmailErrorResponse;
+import asw.agents.webservice.responses.errors.UnknownErrorResponse;
+import asw.agents.webservice.responses.errors.UserNotFoundResponse;
+import asw.agents.webservice.responses.errors.WrongEmailStyleErrorResponse;
 
 //Creacion de los distintos tipos de error.
 public class ErrorFactory {
