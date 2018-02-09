@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import asw.agents.util.Assert;
+import asw.agents.util.Check;
 import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.dbmanagement.UpdateInfo;
 import asw.dbmanagement.model.Agent;
@@ -24,13 +24,13 @@ public class ChangeInfoHTMLController {
 
 	@RequestMapping(value = "/confirmEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model) {
-		Assert.isEmailEmpty(email);
-		Assert.isEmailValid(email);
+		Check.isEmailEmpty(email);
+		Check.isEmailValid(email);
 
 		// Agent que se ha logeado antes
 		Agent p = (Agent) session.getAttribute("agent");
-		Assert.isAgentNull(p);
-		Assert.isSameEmail(email, p.getEmail());
+		Check.isNotNull(p);
+		Check.isSameEmail(email, p.getEmail());
 
 		// Actualizo sus datos
 		updateInfo.updateEmail(p, email);
@@ -48,14 +48,14 @@ public class ChangeInfoHTMLController {
 	@RequestMapping(value = "/confirmPassword", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
 			Model model) {
-		Assert.isPasswordEmpty(password);
-		Assert.isPasswordEmpty(newPassword);
-		Assert.isSamePassword(password, newPassword);
+		Check.passwordString(password);
+		Check.passwordString(newPassword);
+		Check.isSamePassword(password, newPassword);
 
 		// Agent que se ha logeado antes
 		Agent p = (Agent) session.getAttribute("agent");
-		Assert.isAgentNull(p);
-		Assert.isPasswordCorrect(password, p);
+		Check.isNotNull(p);
+		Check.isPasswordCorrect(password, p);
 
 		// Actualizo sus datos
 		updateInfo.updatePassword(p, password, newPassword);

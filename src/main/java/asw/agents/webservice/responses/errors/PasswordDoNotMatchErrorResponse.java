@@ -13,13 +13,11 @@ public class PasswordDoNotMatchErrorResponse extends ErrorResponse {
 
 	@Override
 	public String getMessageJSONFormat() {
-		// TODO Auto-generated method stub
 		return "{\"reason\": \"Password do not match\"}";
 	}
 
 	@Override
 	public String getMessageStringFormat() {
-		// TODO Auto-generated method stub
 		return "Password do not match";
 	}
 

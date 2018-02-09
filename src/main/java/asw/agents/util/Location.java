@@ -37,6 +37,7 @@ public class Location {
 	}
 
 	// return string representation of this point
+	@Override
 	public String toString() {
 		return " (" + latitude + ", " + longitude + ")";
 	}

@@ -4,18 +4,27 @@ import asw.agents.factory.ErrorFactory;
 import asw.agents.factory.ErrorFactory.Errors;
 import asw.dbmanagement.model.Agent;
 
-public class Assert {
+public class Check {
 
 	/**
 	 * 
 	 * @param agent
 	 * @return devuelve false si no es null o excepcion
 	 */
-	public static boolean isAgentNull(Agent agent) {
-		if (agent == null) {
+	public static void isNotNull(Agent agent) {
+		if (isNull(agent)) {
 			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
 		}
-		return false;
+	}
+
+	public static void isAgentNotNull(Agent agent) {
+		if (isNull(agent)) {
+			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
+		}
+	}
+
+	public static <T> boolean isNull(T arg) {
+		return arg == null;
 	}
 
 	/**
@@ -25,7 +34,7 @@ public class Assert {
 	 */
 	public static boolean isEmailEmpty(String email) {
 		if (email.trim().isEmpty())
-			throw ErrorFactory.getError(Errors.REQUIRED_EMAIL);
+			throw ErrorFactory.getError(Errors.REQUIRED_USERNAME);
 		else
 			return false;
 	}
@@ -55,13 +64,6 @@ public class Assert {
 		return true;
 	}
 
-	public static boolean isPasswordEmpty(String password) {
-		if (password.trim().isEmpty())
-			throw ErrorFactory.getError(Errors.REQUIRED_PASSWORD);
-		else
-			return false;
-	}
-
 	public static boolean isSameEmail(String email, String email2) {
 		if (email.equals(email2)) {
 			throw ErrorFactory.getError(Errors.SAME_EMAIL);
@@ -75,4 +77,28 @@ public class Assert {
 		}
 		return true;
 	}
+
+	public static void loginString(String login) {
+		if (isNull(login) || isEmpty(login)) {
+			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
+		}
+	}
+
+	private static boolean isEmpty(String string) {
+		return string.trim().isEmpty();
+	}
+
+	public static void passwordString(String password) {
+		if(isNull(password)||isEmpty(password)) {
+			throw ErrorFactory.getError(Errors.REQUIRED_PASSWORD);
+		}
+		
+	}
+
+	public static void kindString(String kind) {
+		if(isNull(kind)||isEmpty(kind)) {
+			throw ErrorFactory.getError(Errors.REQUIRED_KIND);
+		}
+	}
+
 }

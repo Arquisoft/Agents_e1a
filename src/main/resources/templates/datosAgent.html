@@ -14,10 +14,11 @@
 	</form>
 	
 	<p><strong>Nombre:</strong> <span th:text="${session.agent.nombre}"></span></p>
-	<p><strong>Apellidos:</strong> <span th:text="${session.agent.apellidos}"></span></p>
-	<p><strong>DNI:</strong> <span th:text="${session.agent.DNI}"></span></p>
-	<p><strong>Edad:</strong> <span th:text="${session.edad}"></span></p>
-	<p><strong>Direccion:</strong> <span th:text="${session.agent.direccion}"></span></p>
+	<p><strong>Localización:</strong> <span th:text="${session.agent.location}"></span></p>
+	<p><strong>email:</strong> <span th:text="${session.agent.email}"></span></p>
+	<p><strong>ID:</strong> <span th:text="${session.identifier}"></span></p>
+	<p><strong>Tipo:</strong> <span th:text="${session.agent.kind}"></span></p>
+	<p><strong>Código de tipo:</strong> <span th:text="${session.kindCode}"></span></p>
 	
 	<i><span th:if="${info != null}" th:text="${info}">Info</span></i>
 	

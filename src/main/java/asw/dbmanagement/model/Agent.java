@@ -1,13 +1,10 @@
 package asw.dbmanagement.model;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import asw.agents.util.Location;
 
 @Entity
 @Table(name = "Agent")
@@ -80,6 +77,18 @@ public class Agent {
 		return id;
 	}
 
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public /* Location */String getLocation() {
+		return location;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -102,18 +111,6 @@ public class Agent {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public /* Location */String getLocation() {
-		return location;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public String getIdentifier() {
-		return identifier;
 	}
 
 	@Override

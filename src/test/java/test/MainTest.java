@@ -1,17 +1,12 @@
 package test;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -34,11 +29,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import asw.Application;
-import asw.agents.webservice.request.PeticionChangeEmailREST;
-import asw.agents.webservice.request.PeticionChangePasswordREST;
+import asw.agents.util.KindManager;
 import asw.agents.webservice.request.PeticionInfoREST;
 import asw.dbmanagement.GetAgent;
-import asw.dbmanagement.model.Agent;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -62,53 +55,69 @@ public class MainTest {
 	@Value("${local.server.port}")
 	private int port;
 	private URL base;
+	private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
+	String userURI;
 
 	private RestTemplate template;
 
 	@Autowired
 	private GetAgent getAgent;
 
-	// @Test
-	public void emailChangeCorrectXML() {
-		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		String userURI = base.toString() + "/changeEmail";
-		String correctChange = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "<ChangeInfoResponse>"
-				+ "<agent>carmen@yahoo.com</agent>" + "<message>email actualizado correctamente</message>"
-				+ "</ChangeInfoResponse>";
-
-		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
-		interceptors.add(new AcceptInterceptor());
-
-		template.setInterceptors(interceptors);
-
-		response = template.postForEntity(userURI,
-				new PeticionChangeEmailREST("fhfyg@hotmail.com", "123456", "carmen@yahoo.com"), String.class);
-		assertThat(response.getBody(), equalTo(correctChange));
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		this.base = new URL("http://localhost:" + port + "/");
 		template = new TestRestTemplate();
+
+		// Se inicializan variables kindCode con los valores del fichero maestro
+		try {
+			kindPerson = new KindManager().getKindCode("Person");
+			kindSensor = new KindManager().getKindCode("Sensor");
+			kindEntity = new KindManager().getKindCode("Entity");
+		} catch (IOException e) {
+			fail("Error de entrada salida al leer del fichero maestro tipos");
+		}
+
+		userURI = base.toString() + "/user";
 	}
 
-	/*
-	 * @Test public void T2domainModelToString() { Agent agent1 =
-	 * getAgent.getAgent("paco@hotmail.com"); assertEquals(agent1.toString(),
-	 * "Agent [nombre=" + agent1.getNombre() + ", apellidos=" +
-	 * agent1.getApellidos() + ", fechaNacimiento=" + agent1.getFechaNacimiento() +
-	 * ", email=" + agent1.getEmail() + ", DNI=" + agent1.getDNI() + ", direccion="
-	 * + agent1.getDireccion() + ", nacionalidad=" + agent1.getNacionalidad() +
-	 * ", isAdmin=false, isPolitician=false]"); }
-	 */
+	@Test
+	public void T2peticionNoExisteUsuario() {
+		// {"login": NO_EXISTE, "password": password, "kind": Person}
+		ResponseEntity<String> response = template.postForEntity(userURI,
+				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);
+		String expected = "{\"reason\": \"User not found\"}";
+		print(response.getBody());
+		assertThat(response.getBody(), equalTo(expected));
+	}
+	
+	void print(String s) {
+		System.out.println(s);
+	}
 
 	@Test
 	public void T1peticionCorrecta() {
-		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		String userURI = base.toString() + "/user";
-		response = template.postForEntity(userURI, new PeticionInfoREST("usuario", "123456", "Person"), String.class);
-		System.out.println(response.getBody());
-		String expected = "{\"name\":\"nombre\",\"location\":\"1,2\",\"email\":\"nombre@uniovi.es\",\"id\":\"usuario\",\"kind\":\"Person\",\"kindCode\":1}";
+		// Se prueba enviando parámetros de agentes que existen en la base de datos
+
+		// {"login": usuarioJuan, "password": password, "kind": Person}
+		ResponseEntity<String> response = template.postForEntity(userURI,
+				new PeticionInfoREST("usuarioJuan", "password", "Person"), String.class);
+		String expected = "{\"name\":\"Juan\",\"location\":\"1.0,0.2\",\"email\":\"juan@uniovi.es\",\"id\":\"usuarioJuan\",\"kind\":\"Person\",\"kindCode\":"
+				+ kindPerson + "}";
 		assertThat(response.getBody(), equalTo(expected));
+
+		// {"login": usuarioRace, "password": password, "kind": Entity}
+		response = template.postForEntity(userURI, new PeticionInfoREST("usuarioRace", "password", "Entity"),
+				String.class);
+		expected = "{\"name\":\"RACE\",\"location\":\"1.123,-2.123\",\"email\":\"avisos@race.es\",\"id\":\"usuarioRace\",\"kind\":\"Entity\",\"kindCode\":"
+				+ kindEntity + "}";
+		assertThat(response.getBody(), equalTo(expected));
+
+		// {"login": usuarioRace, "password": password, "kind": Entity}
+		response = template.postForEntity(userURI, new PeticionInfoREST("usuarioA6-PK27", "password", "Sensor"),
+				String.class);
+		expected = "{\"name\":\"SensorTemperatura-A6-PK27\",\"location\":\"23.231,123.2\",\"email\":\"tecnico@copinsa.es\",\"id\":\"usuarioA6-PK27\",\"kind\":\"Sensor\",\"kindCode\":"
+				+ kindSensor + "}";
+		assertThat(response.getBody(), equalTo(expected));
+
 	}
 }

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import asw.agents.ChangeInfo;
-import asw.agents.util.Assert;
+import asw.agents.util.Check;
 import asw.agents.webservice.request.PeticionChangeEmailREST;
 import asw.agents.webservice.request.PeticionChangePasswordREST;
-import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.agents.webservice.responses.RespuestaChangeInfoREST;
+import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.dbmanagement.GetAgent;
 import asw.dbmanagement.UpdateInfo;
 import asw.dbmanagement.model.Agent;
@@ -37,20 +37,20 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String password = datos.getPassword();
 		String nuevoEmail = datos.getNewEmail();
 
-		Assert.isEmailEmpty(email);
-		Assert.isEmailValid(email);
+		Check.isEmailEmpty(email);
+		Check.isEmailValid(email);
 
-		Assert.isEmailEmpty(nuevoEmail);
-		Assert.isEmailValid(nuevoEmail);
+		Check.isEmailEmpty(nuevoEmail);
+		Check.isEmailValid(nuevoEmail);
 
-		Assert.isSameEmail(email, nuevoEmail);
+		Check.isSameEmail(email, nuevoEmail);
 
-		Assert.isPasswordEmpty(password);
+		Check.passwordString(password);
 
 		// TODO este null
 		Agent p = getAgent.getByIdentifier(null);
-		Assert.isAgentNull(p);
-		Assert.isPasswordCorrect(password, p);
+		Check.isNotNull(p);
+		Check.isPasswordCorrect(password, p);
 
 		updateInfo.updateEmail(p, nuevoEmail);
 
@@ -67,18 +67,18 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String password = datos.getPassword();
 		String newPassword = datos.getNewPassword();
 
-		Assert.isEmailEmpty(email);
-		Assert.isEmailValid(email);
+		Check.isEmailEmpty(email);
+		Check.isEmailValid(email);
 
-		Assert.isPasswordEmpty(password);
-		Assert.isPasswordEmpty(newPassword);
+		Check.passwordString(password);
+		Check.passwordString(newPassword);
 
-		Assert.isSamePassword(password, newPassword);
+		Check.isSamePassword(password, newPassword);
 
 		// TODO este null
 		Agent p = getAgent.getByIdentifier(null);
-		Assert.isAgentNull(p);
-		Assert.isPasswordCorrect(password, p);
+		Check.isNotNull(p);
+		Check.isPasswordCorrect(password, p);
 
 		updateInfo.updatePassword(p, password, newPassword);
 

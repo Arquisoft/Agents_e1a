@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import asw.agents.GetAgentInfo;
-import asw.agents.util.Assert;
+import asw.agents.util.Check;
 import asw.agents.webservice.request.PeticionInfoREST;
-import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.agents.webservice.responses.RespuestaInfoREST;
+import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.dbmanagement.GetAgent;
 import asw.dbmanagement.model.Agent;
 
@@ -29,16 +29,14 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 			"Accept=application/xml" }, produces = { "application/json", "text/xml" })
 	public ResponseEntity<RespuestaInfoREST> getPOSTpetition(@RequestBody(required = true) PeticionInfoREST peticion) {
 
-		// TODO no se comprueba nada de momento
-//		Assert.isEmailEmpty(peticion.getLogin());
-//		Assert.isEmailValid(peticion.getLogin());
-//		Assert.isPasswordEmpty(peticion.getPassword());
-		
-		System.out.println(peticion.getLogin());
+		// TODO deberían de funcionar, comprobar con valores que no existan ...
+		Check.loginString(peticion.getLogin());
+		Check.passwordString(peticion.getPassword());
+		Check.kindString(peticion.getKind());
 
 		Agent agent = getAgent.getByIdentifier(peticion.getLogin());
 
-		// Assert.isAgentNull(agent);
+		Check.isNotNull(agent);
 
 		// Assert.isPasswordCorrect(peticion.getPassword(), agent);
 

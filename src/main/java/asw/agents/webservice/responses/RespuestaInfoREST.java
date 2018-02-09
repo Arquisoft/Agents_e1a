@@ -7,11 +7,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import asw.agents.util.KindManager;
 import asw.dbmanagement.model.Agent;
+
 @XmlRootElement(name = "agent")
 public class RespuestaInfoREST {
 
 	private String name;
-	private /* Location */String location;
+	private String location;
 	private String email;
 	private String id;
 	private String kind;
@@ -49,7 +50,7 @@ public class RespuestaInfoREST {
 		return kindCode;
 	}
 
-	public /* Location */String getLocation() {
+	public String getLocation() {
 		return location;
 	}
 
@@ -74,7 +75,7 @@ public class RespuestaInfoREST {
 		this.kindCode = kindCode;
 	}
 
-	public void setLocation(/* Location */String location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 

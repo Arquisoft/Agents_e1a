@@ -10,13 +10,11 @@ public class IncorrectPasswordErrorResponse extends ErrorResponse {
 
 	@Override
 	public String getMessageJSONFormat() {
-		// TODO Auto-generated method stub
 		return "{\"reason\": \"Password Incorrect\"}";
 	}
 
 	@Override
 	public String getMessageStringFormat() {
-		// TODO Auto-generated method stub
 		return "Password Incorrect";
 	}
 

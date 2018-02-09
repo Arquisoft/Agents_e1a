@@ -19,7 +19,7 @@ public class KindManager {
 	 *             Exception de entrada salida
 	 */
 	public int getKindCode(String kind) throws IOException {
-		//return 1;
+		// return 1;
 		return getKindcodes().get(kind);
 	}
 

@@ -1,8 +1,7 @@
 package asw;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import asw.agents.util.Location;
 import asw.dbmanagement.model.Agent;
 import asw.dbmanagement.repository.AgentRepository;
 
@@ -27,11 +25,10 @@ public class Application {
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
 
 		return (args) -> {
-			Agent agent = repository.save(new Agent("nombre", /* new Location(1, 2) */"1,2", "nombre@uniovi.es",
-					"password", "Person", "usuario"));
-			System.out.println("Se han introducido el agente: " + agent + "\n\n");
-			System.out.println("agentes en la base de datos: ");
-			repository.findAll().stream().forEach(a -> System.out.println(a));
+			repository.save(new Agent("Juan", "1.0,0.2", "juan@uniovi.es", "password", "Person", "usuarioJuan"));
+			repository.save(new Agent("RACE", "1.123,-2.123", "avisos@race.es", "password", "Entity", "usuarioRace"));
+			repository.save(new Agent("SensorTemperatura-A6-PK27", "23.231,123.2", "tecnico@copinsa.es", "password", "Sensor",
+					"usuarioA6-PK27"));
 		};
 	}
 }

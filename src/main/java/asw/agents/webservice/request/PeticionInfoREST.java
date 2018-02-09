@@ -6,20 +6,17 @@ public class PeticionInfoREST {
 	private String password;
 	private String kind;
 
-	public String getKind() {
-		return kind;
+	public PeticionInfoREST() {
 	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-	
-	public PeticionInfoREST() {}
 
 	public PeticionInfoREST(String login, String password, String kind) {
 		this.login = login;
 		this.password = password;
 		this.kind = kind;
+	}
+
+	public String getKind() {
+		return kind;
 	}
 
 	public String getLogin() {
@@ -28,6 +25,10 @@ public class PeticionInfoREST {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 
 	public void setLogin(String login) {

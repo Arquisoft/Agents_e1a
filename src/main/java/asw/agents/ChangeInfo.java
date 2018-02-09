@@ -2,10 +2,9 @@ package asw.agents;
 
 import org.springframework.http.ResponseEntity;
 
-
-import asw.agents.webservice.responses.RespuestaChangeInfoREST;
 import asw.agents.webservice.request.PeticionChangeEmailREST;
 import asw.agents.webservice.request.PeticionChangePasswordREST;
+import asw.agents.webservice.responses.RespuestaChangeInfoREST;
 
 public interface ChangeInfo {
 	/**

@@ -1,5 +1,7 @@
 package asw.agents.webservice.htmlcontroller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import asw.agents.util.Assert;
+import asw.agents.util.Check;
+import asw.agents.util.KindManager;
 import asw.agents.webservice.responses.errors.ErrorResponse;
 import asw.dbmanagement.GetAgent;
 import asw.dbmanagement.model.Agent;
@@ -24,25 +27,28 @@ public class GetAgentInfoHTMLController {
 	private GetAgent getAgent;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String getLogin(HttpSession session, @RequestParam String email, @RequestParam String password,
-			Model model) {
+	public String getLogin(HttpSession session, @RequestParam String identifier, @RequestParam String password,
+			@RequestParam String kind, Model model) {
 
-		// TODO de momento se pasan de estas conprobaciones
-		// Assert.isEmailEmpty(email);
-		// Assert.isEmailValid(email);
-		// Assert.isPasswordEmpty(password);
+		Check.loginString(identifier);
+		Check.passwordString(password);
+		Check.kindString(kind);
 
-		// System.out.println("hola");
+		Agent agent = getAgent.getByIdentifier(identifier);
 
-		// TODO
-		Agent agent = getAgent.getByIdentifier(null);
-
-		System.out.println(agent);
-
-		Assert.isAgentNull(agent);
-		Assert.isPasswordCorrect(password, agent);
+		Check.isNotNull(agent);
+		Check.isPasswordCorrect(password, agent);
 
 		session.setAttribute("agent", agent);
+
+		Integer kindCode = 0;
+		try {
+			kindCode = new KindManager().getKindCode(agent.getKind());
+		} catch (IOException e) {
+			// TODO excepción ??
+		}
+
+		session.setAttribute("kindCode", kindCode);
 
 		return "datosAgent";
 
