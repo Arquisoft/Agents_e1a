@@ -6,25 +6,10 @@ import asw.dbmanagement.model.Agent;
 
 public class Check {
 
-	/**
-	 * 
-	 * @param agent
-	 * @return devuelve false si no es null o excepcion
-	 */
-	public static void isNotNull(Agent agent) {
-		if (isNull(agent)) {
-			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
-		}
-	}
-
 	public static void isAgentNotNull(Agent agent) {
 		if (isNull(agent)) {
 			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
 		}
-	}
-
-	public static <T> boolean isNull(T arg) {
-		return arg == null;
 	}
 
 	/**
@@ -57,10 +42,29 @@ public class Check {
 		return true;
 	}
 
+	private static boolean isEmpty(String string) {
+		return string.trim().isEmpty();
+	}
+
 	public static void isLoginCorrect(String password, String kind, Agent agent) {
 		if (!password.equals(agent.getPassword()) || !kind.equals(agent.getKind())) {
 			throw ErrorFactory.getError(Errors.INCORRECT_LOGIN);
 		}
+	}
+
+	/**
+	 * 
+	 * @param agent
+	 * @return devuelve false si no es null o excepcion
+	 */
+	public static void isNotNull(Agent agent) {
+		if (isNull(agent)) {
+			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
+		}
+	}
+
+	public static <T> boolean isNull(T arg) {
+		return arg == null;
 	}
 
 	public static boolean isSameEmail(String email, String email2) {
@@ -77,14 +81,16 @@ public class Check {
 		return true;
 	}
 
+	public static void kindString(String kind) {
+		if (isNull(kind) || isEmpty(kind)) {
+			throw ErrorFactory.getError(Errors.REQUIRED_KIND);
+		}
+	}
+
 	public static void loginString(String login) {
 		if (isNull(login) || isEmpty(login)) {
 			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
 		}
-	}
-
-	private static boolean isEmpty(String string) {
-		return string.trim().isEmpty();
 	}
 
 	public static void passwordString(String password) {
@@ -92,12 +98,6 @@ public class Check {
 			throw ErrorFactory.getError(Errors.REQUIRED_PASSWORD);
 		}
 
-	}
-
-	public static void kindString(String kind) {
-		if (isNull(kind) || isEmpty(kind)) {
-			throw ErrorFactory.getError(Errors.REQUIRED_KIND);
-		}
 	}
 
 }

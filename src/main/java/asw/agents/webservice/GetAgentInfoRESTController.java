@@ -38,7 +38,7 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 
 		Check.isNotNull(agent);
 
-		Check.isLoginCorrect(peticion.getPassword(),peticion.getKind(), agent);
+		Check.isLoginCorrect(peticion.getPassword(), peticion.getKind(), agent);
 
 		/*
 		 * Añadimos la información al modelo, para que se muestre en la pagina html:

@@ -83,9 +83,9 @@ public class MainTest {
 
 		userURI = base.toString() + "/user";
 	}
-	
+
 	@Test
-	public void T1peticionCorrecta() {
+	public void T2peticionCorrecta() {
 		// Se prueba enviando parámetros de agentes que existen en la base de datos
 
 		// {"login": usuarioJuan, "password": password, "kind": Person}
@@ -112,7 +112,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T2peticionNoExisteUsuario() {
+	public void T1peticionNoExisteUsuario() {
 		// {"login": NO_EXISTE, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,
 				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);

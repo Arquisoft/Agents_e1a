@@ -36,7 +36,7 @@ public class ErrorFactory {
 		case SAME_EMAIL:
 			return new SameEmailErrorResponse();
 		case REQUIRED_KIND:
-			return new RequiredKindErrorResponse(); 
+			return new RequiredKindErrorResponse();
 		case INCORRECT_LOGIN:
 			return new IncorrectLoginErrorResponse();
 		default:// en caso de no conocer el error.
