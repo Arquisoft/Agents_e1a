@@ -1,35 +1,62 @@
 package asw.agents.webService.responses;
 
+import java.io.IOException;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import asw.agents.util.KindManager;
+import asw.agents.util.Location;
 import asw.dbManagement.model.Agent;
 
 @XmlRootElement(name = "agent")
 public class RespuestaInfoREST {
 
-	private String firstName;
-	private String ID;
+	private String name;
+	private /* Location */String location;
 	private String email;
+	private String id;
+	private String kind;
+	private int kindCode;
 
 	public RespuestaInfoREST() {
 	}
 
 	public RespuestaInfoREST(Agent agent) {
-		setFirstName(agent.getNombre());
+		setName(agent.getNombre());
+		setLocation(agent.getLocation());
 		setEmail(agent.getEmail());
+		setId(agent.getIdentifier());
+		setKind(agent.getKind());
+		try {
+			setKindCode(new KindManager().getKindCode(kind));
+		} catch (IOException e) {
+			// TODO lanzar exepción ??
+		}
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getId() {
+		return id;
 	}
 
-	public String getID() {
-		return ID;
+	public String getKind() {
+		return kind;
+	}
+
+	public int getKindCode() {
+		return kindCode;
+	}
+
+	public /* Location */String getLocation() {
+		return location;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	@XmlElement
@@ -37,9 +64,25 @@ public class RespuestaInfoREST {
 		this.email = email;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public void setKindCode(int kindCode) {
+		this.kindCode = kindCode;
+	}
+
+	public void setLocation(/* Location */String location) {
+		this.location = location;
+	}
+
 	@XmlElement
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -4,21 +4,19 @@ public class PeticionInfoREST {
 
 	private String login;
 	private String password;
-	private int kind;
+	private String kind;
 
-	public PeticionInfoREST() {
-
-	}
-
-	public int getKind() {
+	public String getKind() {
 		return kind;
 	}
 
-	public void setKind(int kind) {
+	public void setKind(String kind) {
 		this.kind = kind;
 	}
+	
+	public PeticionInfoREST() {}
 
-	public PeticionInfoREST(String login, String password, int kind) {
+	public PeticionInfoREST(String login, String password, String kind) {
 		this.login = login;
 		this.password = password;
 		this.kind = kind;

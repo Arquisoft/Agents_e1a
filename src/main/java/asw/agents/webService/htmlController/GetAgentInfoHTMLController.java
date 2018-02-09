@@ -27,11 +27,17 @@ public class GetAgentInfoHTMLController {
 	public String getLogin(HttpSession session, @RequestParam String email, @RequestParam String password,
 			Model model) {
 
-		Assert.isEmailEmpty(email);
-		Assert.isEmailValid(email);
-		Assert.isPasswordEmpty(password);
+		// TODO de momento se pasan de estas conprobaciones
+		// Assert.isEmailEmpty(email);
+		// Assert.isEmailValid(email);
+		// Assert.isPasswordEmpty(password);
 
-		Agent agent = getAgent.getAgent(email);
+		// System.out.println("hola");
+
+		// TODO
+		Agent agent = getAgent.getByIdentifier(null);
+
+		System.out.println(agent);
 
 		Assert.isAgentNull(agent);
 		Assert.isPasswordCorrect(password, agent);

@@ -20,14 +20,15 @@ public class Agent {
 
 	// Atributos del agente
 	private String nombre;
-	@Embedded
-	private Location location;
+	// @Embedded
+	// private Location location;
+	private String location;
 	@Column(unique = true)
 	private String email;
 	@Column(unique = true)
 	private String identifier;
 	private String password;
-	private byte kind;
+	private String kind;
 
 	/**
 	 * Constructor vacío (ya que es para mapear)
@@ -43,7 +44,8 @@ public class Agent {
 	 * @param kind
 	 * @param identifier
 	 */
-	public Agent(String nombre, Location location, String email, String password, byte kind, String identifier) {
+	public Agent(String nombre, /* Location */String location, String email, String password, String kind,
+			String identifier) {
 		super();
 		this.nombre = nombre;
 		this.location = location;
@@ -102,16 +104,22 @@ public class Agent {
 		this.password = password;
 	}
 
-	public Location getLocation() {
+	public /* Location */String getLocation() {
 		return location;
 	}
 
-	public byte getKind() {
+	public String getKind() {
 		return kind;
 	}
 
 	public String getIdentifier() {
 		return identifier;
+	}
+
+	@Override
+	public String toString() {
+		return "Agent [id=" + id + ", nombre=" + nombre + ", location=" /* + location */ + ", email=" + email
+				+ ", identifier=" + identifier + ", password=" + password + ", kind=" + kind + "]";
 	}
 
 }

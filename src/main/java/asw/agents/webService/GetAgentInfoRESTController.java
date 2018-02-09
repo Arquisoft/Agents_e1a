@@ -29,15 +29,18 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 			"Accept=application/xml" }, produces = { "application/json", "text/xml" })
 	public ResponseEntity<RespuestaInfoREST> getPOSTpetition(@RequestBody(required = true) PeticionInfoREST peticion) {
 
-		Assert.isEmailEmpty(peticion.getLogin());
-		Assert.isEmailValid(peticion.getLogin());
-		Assert.isPasswordEmpty(peticion.getPassword());
+		// TODO no se comprueba nada de momento
+//		Assert.isEmailEmpty(peticion.getLogin());
+//		Assert.isEmailValid(peticion.getLogin());
+//		Assert.isPasswordEmpty(peticion.getPassword());
+		
+		System.out.println(peticion.getLogin());
 
-		Agent agent = getAgent.getAgent(peticion.getLogin());
+		Agent agent = getAgent.getByIdentifier(peticion.getLogin());
 
-		Assert.isAgentNull(agent);
+		// Assert.isAgentNull(agent);
 
-		Assert.isPasswordCorrect(peticion.getPassword(), agent);
+		// Assert.isPasswordCorrect(peticion.getPassword(), agent);
 
 		/*
 		 * Añadimos la información al modelo, para que se muestre en la pagina html:

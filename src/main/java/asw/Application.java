@@ -27,7 +27,11 @@ public class Application {
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
 
 		return (args) -> {
-			repository.save(new Agent("usuario", new Location(1,2), "a@s.es", "password", (byte) 1, "ident"));
+			Agent agent = repository.save(new Agent("nombre", /* new Location(1, 2) */"1,2", "nombre@uniovi.es",
+					"password", "Person", "usuario"));
+			System.out.println("Se han introducido el agente: " + agent + "\n\n");
+			System.out.println("agentes en la base de datos: ");
+			repository.findAll().stream().forEach(a -> System.out.println(a));
 		};
 	}
 }

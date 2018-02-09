@@ -47,7 +47,8 @@ public class ChangeInfoRESTController implements ChangeInfo {
 
 		Assert.isPasswordEmpty(password);
 
-		Agent p = getAgent.getAgent(email);
+		// TODO este null
+		Agent p = getAgent.getByIdentifier(null);
 		Assert.isAgentNull(p);
 		Assert.isPasswordCorrect(password, p);
 
@@ -74,7 +75,8 @@ public class ChangeInfoRESTController implements ChangeInfo {
 
 		Assert.isSamePassword(password, newPassword);
 
-		Agent p = getAgent.getAgent(email);
+		// TODO este null
+		Agent p = getAgent.getByIdentifier(null);
 		Assert.isAgentNull(p);
 		Assert.isPasswordCorrect(password, p);
 
