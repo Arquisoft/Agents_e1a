@@ -37,7 +37,7 @@ public class GetAgentInfoHTMLController {
 		Agent agent = getAgent.getByIdentifier(identifier);
 
 		Check.isNotNull(agent);
-		Check.isPasswordCorrect(password, agent);
+		Check.isLoginCorrect(password,kind, agent);
 
 		session.setAttribute("agent", agent);
 

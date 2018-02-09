@@ -50,7 +50,7 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		// TODO este null
 		Agent p = getAgent.getByIdentifier(null);
 		Check.isNotNull(p);
-		Check.isPasswordCorrect(password, p);
+		// Check.isLoginCorrect(password, p);
 
 		updateInfo.updateEmail(p, nuevoEmail);
 
@@ -78,7 +78,7 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		// TODO este null
 		Agent p = getAgent.getByIdentifier(null);
 		Check.isNotNull(p);
-		Check.isPasswordCorrect(password, p);
+		// Check.isLoginCorrect(password, p);
 
 		updateInfo.updatePassword(p, password, newPassword);
 

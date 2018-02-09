@@ -57,11 +57,10 @@ public class Check {
 		return true;
 	}
 
-	public static boolean isPasswordCorrect(String password, Agent agent) {
-		if (!password.equals(agent.getPassword())) {
-			throw ErrorFactory.getError(Errors.INCORRECT_PASSWORD_DO_NOT_MATCH);
+	public static void isLoginCorrect(String password, String kind, Agent agent) {
+		if (!password.equals(agent.getPassword()) || !kind.equals(agent.getKind())) {
+			throw ErrorFactory.getError(Errors.INCORRECT_LOGIN);
 		}
-		return true;
 	}
 
 	public static boolean isSameEmail(String email, String email2) {
@@ -89,14 +88,14 @@ public class Check {
 	}
 
 	public static void passwordString(String password) {
-		if(isNull(password)||isEmpty(password)) {
+		if (isNull(password) || isEmpty(password)) {
 			throw ErrorFactory.getError(Errors.REQUIRED_PASSWORD);
 		}
-		
+
 	}
 
 	public static void kindString(String kind) {
-		if(isNull(kind)||isEmpty(kind)) {
+		if (isNull(kind) || isEmpty(kind)) {
 			throw ErrorFactory.getError(Errors.REQUIRED_KIND);
 		}
 	}

@@ -55,7 +55,7 @@ public class ChangeInfoHTMLController {
 		// Agent que se ha logeado antes
 		Agent p = (Agent) session.getAttribute("agent");
 		Check.isNotNull(p);
-		Check.isPasswordCorrect(password, p);
+		// TODO Check.isLoginCorrect(password, p);
 
 		// Actualizo sus datos
 		updateInfo.updatePassword(p, password, newPassword);

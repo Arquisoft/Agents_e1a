@@ -63,6 +63,10 @@ public class MainTest {
 	@Autowired
 	private GetAgent getAgent;
 
+	void print(String s) {
+		System.out.println(s);
+	}
+
 	@Before
 	public void setUp() throws Exception {
 		this.base = new URL("http://localhost:" + port + "/");
@@ -79,21 +83,7 @@ public class MainTest {
 
 		userURI = base.toString() + "/user";
 	}
-
-	@Test
-	public void T2peticionNoExisteUsuario() {
-		// {"login": NO_EXISTE, "password": password, "kind": Person}
-		ResponseEntity<String> response = template.postForEntity(userURI,
-				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);
-		String expected = "{\"reason\": \"User not found\"}";
-		print(response.getBody());
-		assertThat(response.getBody(), equalTo(expected));
-	}
 	
-	void print(String s) {
-		System.out.println(s);
-	}
-
 	@Test
 	public void T1peticionCorrecta() {
 		// Se prueba enviando parámetros de agentes que existen en la base de datos
@@ -119,5 +109,15 @@ public class MainTest {
 				+ kindSensor + "}";
 		assertThat(response.getBody(), equalTo(expected));
 
+	}
+
+	@Test
+	public void T2peticionNoExisteUsuario() {
+		// {"login": NO_EXISTE, "password": password, "kind": Person}
+		ResponseEntity<String> response = template.postForEntity(userURI,
+				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);
+		String expected = "{\"reason\": \"User not found\"}";
+		print(response.getBody());
+		assertThat(response.getBody(), equalTo(expected));
 	}
 }
