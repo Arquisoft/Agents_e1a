@@ -21,10 +21,15 @@ public class FilesManager {
 	 *             Exception de entrada salida
 	 */
 	public static int getKindCode(String kind) throws IOException {
-		return kindCodes == null ? getKindcodes().get(kind) : kindCodes.get(kind);
+		if (kindCodes == null) {
+			getKindcodes();
+		}
+		Integer kindCode = kindCodes.get(kind);
+		Check.existsKindCode(kindCode);
+		return kindCode;
 	}
 
-	private static Map<String, Integer> getKindcodes() throws IOException {
+	private static void getKindcodes() throws IOException {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		try (BufferedReader br = new BufferedReader(new FileReader("tipos.csv"))) {
 			while (br.ready()) {
@@ -33,7 +38,6 @@ public class FilesManager {
 			}
 			kindCodes = map;
 		}
-		return kindCodes;
 	}
 
 	private FilesManager() {

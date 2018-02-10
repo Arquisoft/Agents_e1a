@@ -38,8 +38,6 @@ public class GetAgentInfoHTMLController {
 
 		Check.isNotNull(agent);
 		Check.isPetitionCorrect(password, kind, agent);
-		
-		System.out.println(agent.getIdentifier());
 
 		session.setAttribute("agent", agent);
 

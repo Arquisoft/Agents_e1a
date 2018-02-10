@@ -101,4 +101,11 @@ public class Check {
 
 	}
 
+	public static void existsKindCode(Integer kindCode) {
+		if(isNull(kindCode)) {
+			throw ErrorFactory.getError(Errors.INTERNAL_FAILURE_KIND_DOES_NOT_EXIST);
+		}
+		
+	}
+
 }
