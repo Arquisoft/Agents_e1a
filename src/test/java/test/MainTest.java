@@ -41,7 +41,6 @@ import asw.dbmanagement.FindAgent;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MainTest {
 
-	private URL base;
 	@SuppressWarnings("unused")
 	@Autowired
 	private FindAgent getAgent;
@@ -51,11 +50,11 @@ public class MainTest {
 
 	private RestTemplate template;
 
-	String userURI;
+	private String userURI;
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + port + "/");
+		URL base = new URL("http://localhost:" + port + "/");
 		template = new TestRestTemplate();
 
 		// Se inicializan variables kindCode con los valores del fichero maestro
