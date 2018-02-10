@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import asw.agents.factory.ErrorFactory;
+import asw.agents.factory.ErrorFactory.Errors;
 import asw.agents.util.Check;
 import asw.agents.util.FilesManager;
 import asw.agents.webservice.responses.errors.ErrorResponse;
@@ -45,7 +47,7 @@ public class GetAgentInfoHTMLController {
 		try {
 			kindCode = FilesManager.getKindCode(agent.getKind());
 		} catch (IOException e) {
-			// TODO excepción ??
+			throw ErrorFactory.getError(Errors.KIND_FILE_ERROR);
 		}
 
 		session.setAttribute("kindCode", kindCode);
