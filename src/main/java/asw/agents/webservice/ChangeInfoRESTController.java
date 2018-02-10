@@ -38,10 +38,10 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String nuevoEmail = datos.getNewEmail();
 
 		Check.isEmailEmpty(email);
-		Check.isEmailValid(email);
+		Check.isValidEmailAddress(email);
 
 		Check.isEmailEmpty(nuevoEmail);
-		Check.isEmailValid(nuevoEmail);
+		Check.isValidEmailAddress(nuevoEmail); 
 
 		Check.isSameEmail(email, nuevoEmail);
 
@@ -68,7 +68,7 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String newPassword = datos.getNewPassword();
 
 		Check.isEmailEmpty(email);
-		Check.isEmailValid(email);
+		Check.isValidEmailAddress(email);
 
 		Check.passwordString(password);
 		Check.passwordString(newPassword);
