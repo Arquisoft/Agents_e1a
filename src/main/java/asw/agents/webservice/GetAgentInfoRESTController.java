@@ -40,8 +40,8 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 		// Se comprueba que el agent existe
 		Check.isNotNull(agent);
 
-		// Se comprueba que se corresponde login:password:kind
-		Check.isLoginCorrect(peticion.getPassword(), peticion.getKind(), agent);
+		// Se comprueba que la combinación login/password/kind tiene correspondencia
+		Check.isPetitionCorrect(peticion.getPassword(), peticion.getKind(), agent);
 
 		return new ResponseEntity<RespuestaInfoREST>(new RespuestaInfoREST(agent), HttpStatus.OK);
 	}

@@ -37,7 +37,7 @@ public class GetAgentInfoHTMLController {
 		Agent agent = getAgent.execute(identifier);
 
 		Check.isNotNull(agent);
-		Check.isLoginCorrect(password, kind, agent);
+		Check.isPetitionCorrect(password, kind, agent);
 		
 		System.out.println(agent.getIdentifier());
 

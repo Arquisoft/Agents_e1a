@@ -33,7 +33,7 @@ public class Check {
 		return string.trim().isEmpty();
 	}
 
-	public static void isLoginCorrect(String password, String kind, Agent agent) {
+	public static void isPetitionCorrect(String password, String kind, Agent agent) {
 		if (!password.equals(agent.getPassword()) || !kind.equals(agent.getKind())) {
 			throw ErrorFactory.getError(Errors.INCORRECT_LOGIN);
 		}

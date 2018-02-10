@@ -60,6 +60,7 @@ public class MainTest {
 
 	private RestTemplate template;
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private FindAgent getAgent;
 
