@@ -31,7 +31,7 @@ import org.springframework.web.client.RestTemplate;
 import asw.Application;
 import asw.agents.util.KindManager;
 import asw.agents.webservice.request.PeticionInfoREST;
-import asw.dbmanagement.GetAgent;
+import asw.dbmanagement.FindAgent;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -61,7 +61,7 @@ public class MainTest {
 	private RestTemplate template;
 
 	@Autowired
-	private GetAgent getAgent;
+	private FindAgent getAgent;
 
 	void print(String s) {
 		System.out.println(s);

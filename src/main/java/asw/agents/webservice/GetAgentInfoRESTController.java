@@ -15,14 +15,14 @@ import asw.agents.util.Check;
 import asw.agents.webservice.request.PeticionInfoREST;
 import asw.agents.webservice.responses.RespuestaInfoREST;
 import asw.agents.webservice.responses.errors.ErrorResponse;
-import asw.dbmanagement.GetAgent;
+import asw.dbmanagement.FindAgent;
 import asw.dbmanagement.model.Agent;
 
 @RestController
 public class GetAgentInfoRESTController implements GetAgentInfo {
 
 	@Autowired
-	private GetAgent getAgent;
+	private FindAgent getAgent;
 
 	@Override
 	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = { "Accept=application/json",
@@ -34,7 +34,7 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 		Check.passwordString(peticion.getPassword());
 		Check.kindString(peticion.getKind());
 
-		Agent agent = getAgent.getByIdentifier(peticion.getLogin());
+		Agent agent = getAgent.execute(peticion.getLogin());
 
 		Check.isNotNull(agent);
 

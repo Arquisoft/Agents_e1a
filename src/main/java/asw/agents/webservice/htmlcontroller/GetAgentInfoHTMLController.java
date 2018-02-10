@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import asw.agents.util.Check;
 import asw.agents.util.KindManager;
 import asw.agents.webservice.responses.errors.ErrorResponse;
-import asw.dbmanagement.GetAgent;
+import asw.dbmanagement.FindAgent;
 import asw.dbmanagement.model.Agent;
 
 @Controller
 public class GetAgentInfoHTMLController {
 
 	@Autowired
-	private GetAgent getAgent;
+	private FindAgent getAgent;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String getLogin(HttpSession session, @RequestParam String identifier, @RequestParam String password,
@@ -34,7 +34,7 @@ public class GetAgentInfoHTMLController {
 		Check.passwordString(password);
 		Check.kindString(kind);
 
-		Agent agent = getAgent.getByIdentifier(identifier);
+		Agent agent = getAgent.execute(identifier);
 
 		Check.isNotNull(agent);
 		Check.isLoginCorrect(password, kind, agent);
