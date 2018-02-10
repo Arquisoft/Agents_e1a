@@ -41,32 +41,17 @@ import asw.dbmanagement.FindAgent;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MainTest {
 
-	// Cabecera HTTP para pedir respuesta en XML
-	public class AcceptInterceptor implements ClientHttpRequestInterceptor {
-		@Override
-		public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
-				throws IOException {
-			HttpHeaders headers = request.getHeaders();
-			headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
-			return execution.execute(request, body);
-		}
-	}
-
-	@Value("${local.server.port}")
-	private int port;
 	private URL base;
-	private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
-	String userURI;
-
-	private RestTemplate template;
-
 	@SuppressWarnings("unused")
 	@Autowired
 	private FindAgent getAgent;
+	private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
+	@Value("${local.server.port}")
+	private int port;
 
-	void print(String s) {
-		System.out.println(s);
-	}
+	private RestTemplate template;
+
+	String userURI;
 
 	@Before
 	public void setUp() throws Exception {
@@ -86,7 +71,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T1peticionCorrecta() {
+	public void t1peticionCorrecta() {
 		// Se prueba enviando parámetros de agentes que existen en la base de datos
 
 		// {"login": usuarioJuan, "password": password, "kind": Person}
@@ -113,11 +98,29 @@ public class MainTest {
 	}
 
 	@Test
-	public void T2peticionNoExisteUsuario() {
+	public void t2peticionNoExisteUsuario() {
 		// {"login": NO_EXISTE, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,
 				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);
 		String expected = "{\"reason\": \"User not found\"}";
 		assertThat(response.getBody(), equalTo(expected));
+	}
+	
+	/**
+	 * Cabecera HTTP para pedir respuesta en XML. TODO no se usa de momento pero
+	 * puede ser útil más adelante
+	 * 
+	 * @author 2016-17
+	 *
+	 */
+	@SuppressWarnings("unused")
+	private class AcceptInterceptor implements ClientHttpRequestInterceptor {
+		@Override
+		public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
+				throws IOException {
+			HttpHeaders headers = request.getHeaders();
+			headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
+			return execution.execute(request, body);
+		}
 	}
 }
