@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.uniovi.asw</groupId>
-	<artifactId>agents1a</artifactId>
+	<artifactId>agents1a </artifactId>
 	<name>agents1a</name>
 	<version>0.0.1</version>
 
@@ -19,7 +19,6 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			<version>1.6.0</version>
 		</dependency>
 
 		<dependency>
@@ -167,4 +166,6 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<url>https://github.com/Arquisoft/Agents_e1a</url>
+	<description>Prácticas de las asignatura Arquitectura del Software 2017-18</description>
 </project>
