@@ -22,3 +22,16 @@ Skeleton of agents module
 - Martín Peláez Díaz (UO236974)
 - Laura Menéndez Pérez (UO244646)
 - Fernando Palazuelo Ginzo (UO244588)
+
+# Ejecucion del proyecto
+	
+ En primer lugar importamos el proyecto de la siguente manera:
+	-File -> Import -> Git-> proyects From Git -> Clone Uri
+	-Metemos la Uri que hemos copiado del proyecto de gitHub 
+		le damos a next hasta que nos salga las opciones de como
+		importar el proyecto y lo importamos como general Proyect
+ Una vez importado clickamos con el boton derecho sobre el proyecto
+ en el menu que nos saldra hacemos:
+		-configure -> convert to maven proyect
+ Esperamos un tiempo y ya tendremos el proyecto listo para ejecutar
+	 

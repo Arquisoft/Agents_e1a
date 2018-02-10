@@ -9,7 +9,7 @@ public abstract class ErrorResponse extends RuntimeException {
 	final static String KIND_IS_MISSING = "Internal error - Kind is missing in system master file";
 	final static String REQUIRED_USERNAME="The userName is required";
 	final static String REQUIRED_PASSWORD ="The password is required";
-	final static String USER_NOT_FOUND ="User not Found";
+	final static String USER_NOT_FOUND ="User not found";
 	final static String WRONG_EMAIL_STYLE="Wrong Email Style";
 	final static String INCORRECT_PASSWORD_DO_NOT_MATCH=" The passwords not match";
 	final static String SAME_EMAIL="same Email ";
