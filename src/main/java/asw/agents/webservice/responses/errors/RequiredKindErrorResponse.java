@@ -12,12 +12,12 @@ public class RequiredKindErrorResponse extends ErrorResponse {
 
 	@Override
 	public String getMessageJSONFormat() {
-		return "{\"reason\": \"Kind is incorrect\"}";
+		return "{\"reason\": \"Kind is required\"}";
 	}
 
 	@Override
 	public String getMessageStringFormat() {
-		return "Kind is incorrect";
+		return "Kind is required";
 	}
 
 }
