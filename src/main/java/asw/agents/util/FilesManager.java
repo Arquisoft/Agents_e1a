@@ -14,8 +14,7 @@ public class FilesManager {
 	 * Retorna el código de tipo de agente para el tipo de agente pasado. Toma la
 	 * información del fichero amestro tipos.csv
 	 * 
-	 * @param kind
-	 *            Tipo de agente (textual)
+	 * @param kind Tipo de agente (textual)
 	 * @return Tipo de agente (código entero)
 	 * @throws IOException
 	 *             Exception de entrada salida

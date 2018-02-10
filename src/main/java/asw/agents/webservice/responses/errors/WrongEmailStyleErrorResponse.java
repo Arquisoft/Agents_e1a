@@ -3,20 +3,14 @@ package asw.agents.webservice.responses.errors;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Wrong mail style")
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = ErrorResponse.WRONG_EMAIL_STYLE)
 public class WrongEmailStyleErrorResponse extends ErrorResponse {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public String getMessageJSONFormat() {
-		// TODO Auto-generated method stub
-		return "{\"reason\": \"Wrong mail style\"}";
-	}
-
-	@Override
 	public String getMessageStringFormat() {
 
-		return "Wrong mail style";
+		return ErrorResponse.WRONG_EMAIL_STYLE;
 	}
 
 }
