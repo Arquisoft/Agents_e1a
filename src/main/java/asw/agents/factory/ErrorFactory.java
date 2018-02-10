@@ -1,6 +1,7 @@
 package asw.agents.factory;
 
 import asw.agents.webservice.responses.errors.ErrorResponse;
+import asw.agents.webservice.responses.errors.IncorrectKindErrorResponse;
 import asw.agents.webservice.responses.errors.IncorrectLoginErrorResponse;
 import asw.agents.webservice.responses.errors.IncorrectPasswordErrorResponse;
 import asw.agents.webservice.responses.errors.PasswordDoNotMatchErrorResponse;
@@ -16,7 +17,7 @@ import asw.agents.webservice.responses.errors.WrongEmailStyleErrorResponse;
 public class ErrorFactory {
 
 	public static enum Errors {
-		INCORRECT_PASSWORD, REQUIRED_USERNAME, REQUIRED_PASSWORD, USER_NOT_FOUND, WRONG_EMAIL_STYLE, INCORRECT_PASSWORD_DO_NOT_MATCH, SAME_EMAIL, REQUIRED_KIND, INCORRECT_LOGIN
+		INCORRECT_PASSWORD, REQUIRED_USERNAME, REQUIRED_PASSWORD, USER_NOT_FOUND, WRONG_EMAIL_STYLE, INCORRECT_PASSWORD_DO_NOT_MATCH, SAME_EMAIL, INCORRECT_KIND, REQUIRED_KIND, INCORRECT_LOGIN
 	}
 
 	public static ErrorResponse getError(Errors error) {
@@ -37,6 +38,8 @@ public class ErrorFactory {
 			return new SameEmailErrorResponse();
 		case REQUIRED_KIND:
 			return new RequiredKindErrorResponse();
+		case INCORRECT_KIND:
+			return new IncorrectKindErrorResponse();
 		case INCORRECT_LOGIN:
 			return new IncorrectLoginErrorResponse();
 		default:// en caso de no conocer el error.
