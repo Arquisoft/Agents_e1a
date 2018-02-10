@@ -33,26 +33,17 @@ public class ChangeInfoRESTController implements ChangeInfo {
 			"Accept=application/xml" }, produces = { "application/json", "text/xml" })
 	public ResponseEntity<RespuestaChangeInfoREST> changeEmail(
 			@RequestBody(required = true) PeticionChangeEmailREST datos) {
-		String email = datos.getEmail();
-		String password = datos.getPassword();
+
+		String identifier = datos.getLogin();
 		String nuevoEmail = datos.getNewEmail();
 
-		Check.isEmailEmpty(email);
-		Check.isValidEmailAddress(email);
-
-		Check.isEmailEmpty(nuevoEmail);
-		Check.isValidEmailAddress(nuevoEmail); 
-
-		Check.isSameEmail(email, nuevoEmail);
-
-		Check.passwordString(password);
+		Check.loginString(identifier);
 
 		// TODO este null
-		Agent p = getAgent.execute(null);
-		Check.isNotNull(p);
-		// Check.isLoginCorrect(password, p);
+		Agent agent = getAgent.execute(identifier);
+		Check.isNotNull(agent);
 
-		updateInfo.updateEmail(p, nuevoEmail);
+		updateInfo.updateEmail(agent, nuevoEmail);
 
 		RespuestaChangeInfoREST res = new RespuestaChangeInfoREST(nuevoEmail, "email actualizado correctamente");
 		return new ResponseEntity<RespuestaChangeInfoREST>(res, HttpStatus.OK);
@@ -63,26 +54,18 @@ public class ChangeInfoRESTController implements ChangeInfo {
 			"Accept=application/xml" }, produces = { "application/json", "text/xml" })
 	public ResponseEntity<RespuestaChangeInfoREST> changePassword(
 			@RequestBody(required = true) PeticionChangePasswordREST datos) {
-		String email = datos.getEmail();
+		String identifier = datos.getIdentifier();
 		String password = datos.getPassword();
 		String newPassword = datos.getNewPassword();
 
-		Check.isEmailEmpty(email);
-		Check.isValidEmailAddress(email);
+		Check.loginString(identifier);
 
-		Check.passwordString(password);
-		Check.passwordString(newPassword);
+		Agent agent = getAgent.execute(identifier);
+		Check.isNotNull(agent);
 
-		Check.isSamePassword(password, newPassword);
+		updateInfo.updatePassword(agent, password, newPassword);
 
-		// TODO este null
-		Agent p = getAgent.execute(null);
-		Check.isNotNull(p);
-		// Check.isLoginCorrect(password, p);
-
-		updateInfo.updatePassword(p, password, newPassword);
-
-		RespuestaChangeInfoREST res = new RespuestaChangeInfoREST(email, "contraseña actualizada correctamente");
+		RespuestaChangeInfoREST res = new RespuestaChangeInfoREST(identifier, "contraseña actualizada correctamente");
 		return new ResponseEntity<RespuestaChangeInfoREST>(res, HttpStatus.OK);
 	}
 

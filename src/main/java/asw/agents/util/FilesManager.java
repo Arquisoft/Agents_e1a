@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KindManager {
+public class FilesManager {
+
+	private static Map<String, Integer> kindCodes;
 
 	/**
 	 * Retorna el código de tipo de agente para el tipo de agente pasado. Toma la
@@ -18,20 +20,23 @@ public class KindManager {
 	 * @throws IOException
 	 *             Exception de entrada salida
 	 */
-	public int getKindCode(String kind) throws IOException {
-		// return 1;
-		return getKindcodes().get(kind);
+	public static int getKindCode(String kind) throws IOException {
+		return kindCodes == null ? getKindcodes().get(kind) : kindCodes.get(kind);
 	}
 
-	private Map<String, Integer> getKindcodes() throws IOException {
+	private static Map<String, Integer> getKindcodes() throws IOException {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		try (BufferedReader br = new BufferedReader(new FileReader("tipos.csv"))) {
 			while (br.ready()) {
 				String[] line = br.readLine().split(",");
 				map.put(line[1], Integer.parseInt(line[0]));
 			}
-			return map;
+			kindCodes = map;
 		}
+		return kindCodes;
+	}
+
+	private FilesManager() {
 	}
 
 }

@@ -29,7 +29,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import asw.Application;
-import asw.agents.util.KindManager;
+import asw.agents.util.FilesManager;
 import asw.agents.webservice.request.PeticionInfoREST;
 import asw.dbmanagement.FindAgent;
 
@@ -74,9 +74,9 @@ public class MainTest {
 
 		// Se inicializan variables kindCode con los valores del fichero maestro
 		try {
-			kindPerson = new KindManager().getKindCode("Person");
-			kindSensor = new KindManager().getKindCode("Sensor");
-			kindEntity = new KindManager().getKindCode("Entity");
+			kindPerson = FilesManager.getKindCode("Person");
+			kindSensor = FilesManager.getKindCode("Sensor");
+			kindEntity = FilesManager.getKindCode("Entity");
 		} catch (IOException e) {
 			fail("Error de entrada salida al leer del fichero maestro tipos");
 		}

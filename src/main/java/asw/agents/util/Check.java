@@ -14,7 +14,7 @@ public class Check {
 	 * @param email
 	 * @return excepcion si esta vacio
 	 */
-	public static boolean isEmailEmpty(String email) {
+	public static boolean isNotEmailEmpty(String email) {
 		if (email.trim().isEmpty())
 			throw ErrorFactory.getError(Errors.REQUIRED_USERNAME);
 		else
@@ -61,8 +61,8 @@ public class Check {
 		return true;
 	}
 
-	public static boolean isSamePassword(String password, String password2) {
-		if (password.equals(password2)) {
+	public static boolean isSamePassword(String p1, String p2) {
+		if (!p1.equals(p2)) {
 			throw ErrorFactory.getError(Errors.INCORRECT_PASSWORD);
 		}
 		return true;
@@ -83,6 +83,20 @@ public class Check {
 	public static void passwordString(String password) {
 		if (isNull(password) || isEmpty(password)) {
 			throw ErrorFactory.getError(Errors.REQUIRED_PASSWORD);
+		}
+
+	}
+
+	public static void isNotSamePassword(String p1, String p2) {
+		if (p1.equals(p2)) {
+			throw ErrorFactory.getError(Errors.INCORRECT_PASSWORD_DO_NOT_MATCH);
+		}
+
+	}
+
+	public static void isNotSameEmail(String e1, String e2) {
+		if (e1.equals(e2)) {
+			throw ErrorFactory.getError(Errors.SAME_EMAIL);
 		}
 
 	}

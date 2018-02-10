@@ -22,28 +22,26 @@ import asw.dbmanagement.model.Agent;
 public class GetAgentInfoRESTController implements GetAgentInfo {
 
 	@Autowired
-	private FindAgent getAgent;
+	private FindAgent findAgent;
 
 	@Override
 	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = { "Accept=application/json",
 			"Accept=application/xml" }, produces = { "application/json", "text/xml" })
 	public ResponseEntity<RespuestaInfoREST> getPOSTpetition(@RequestBody(required = true) PeticionInfoREST peticion) {
 
-		// TODO deberían de funcionar, comprobar con valores que no existan ...
+		// Se comprueba que se han pasado correctamente los parámetros del login
 		Check.loginString(peticion.getLogin());
 		Check.passwordString(peticion.getPassword());
 		Check.kindString(peticion.getKind());
 
-		Agent agent = getAgent.execute(peticion.getLogin());
+		// Se obtiene el objeto Agent pedido
+		Agent agent = findAgent.execute(peticion.getLogin());
 
+		// Se comprueba que el agent existe
 		Check.isNotNull(agent);
 
+		// Se comprueba que se corresponde login:password:kind
 		Check.isLoginCorrect(peticion.getPassword(), peticion.getKind(), agent);
-
-		/*
-		 * Añadimos la información al modelo, para que se muestre en la pagina html:
-		 * datosAgent
-		 */
 
 		return new ResponseEntity<RespuestaInfoREST>(new RespuestaInfoREST(agent), HttpStatus.OK);
 	}
