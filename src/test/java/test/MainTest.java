@@ -86,7 +86,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T2peticionCorrecta() {
+	public void T1peticionCorrecta() {
 		// Se prueba enviando parámetros de agentes que existen en la base de datos
 
 		// {"login": usuarioJuan, "password": password, "kind": Person}
@@ -113,12 +113,11 @@ public class MainTest {
 	}
 
 	@Test
-	public void T1peticionNoExisteUsuario() {
+	public void T2peticionNoExisteUsuario() {
 		// {"login": NO_EXISTE, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,
 				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);
 		String expected = "{\"reason\": \"User not found\"}";
-		print(response.getBody());
 		assertThat(response.getBody(), equalTo(expected));
 	}
 }
