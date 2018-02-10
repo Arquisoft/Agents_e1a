@@ -1,31 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
- 	<meta charset="UTF-8"/>
- 	<title>Datos personales</title>
-</head>
-<body>
-<h1>Datos personales</h1>
-	<form method="POST" action="confirmEmail" >
-		<label for="email"><strong>Correo:</strong> </label>
-		<input type="text" name="email" th:value="${session.agent.email}"/>
-		<input type="submit" name="cambiarEmail" value="Cambiar email"/>
-	</form>
-	
-	<p><strong>Nombre:</strong> <span th:text="${session.agent.nombre}"></span></p>
-	<p><strong>Localización:</strong> <span th:text="${session.agent.location}"></span></p>
-	<p><strong>email:</strong> <span th:text="${session.agent.email}"></span></p>
-	<p><strong>ID:</strong> <span th:text="${session.identifier}"></span></p>
-	<p><strong>Tipo:</strong> <span th:text="${session.agent.kind}"></span></p>
-	<p><strong>Código de tipo:</strong> <span th:text="${session.kindCode}"></span></p>
-	
-	<i><span th:if="${info != null}" th:text="${info}">Info</span></i>
-	
-	<br/>
-	<br/>
-	<form method="POST" action="changeInfo" >
-		<input type="submit" name="cambiarContraseña" value="Cambiar contraseña"/>
-	</form>
-</body>
+   <head>
+      <meta charset="UTF-8"/>
+      <title>Datos personales</title>
+   </head>
+   <body>
+      <h1>Datos personales</h1>
+      <p><strong>Nombre:</strong> <span th:text="${session.agent.nombre}"></span></p>
+      <p><strong>Localización:</strong> <span th:text="${session.agent.location}"></span></p>
+      <p><strong>email:</strong> <span th:text="${session.agent.email}"></span></p>
+      <p><strong>ID:</strong> <span th:text="${session.agent.identifier}"></span></p>
+      <p><strong>Tipo:</strong> <span th:text="${session.agent.kind}"></span></p>
+      <p><strong>Código de tipo:</strong> <span th:text="${session.kindCode}"></span></p>
+      <i><span th:if="${info != null}" th:text="${info}">Info</span></i>
+      <br/>
+      <br/>
+      <form method="POST" action="changeInfo" >
+         <input type="submit" name="cambiarContraseña" value="Cambiar contraseña"/>
+      </form>
+      <br/>
+      <br/>
+      <form method="POST" action="confirmEmail" >
+         <label for="email"><strong>Correo:</strong> </label>
+         <input type="text" name="email" th:value="${session.agent.email}"/>
+         <input type="submit" name="cambiarEmail" value="Cambiar email"/>
+      </form>
+   </body>
 </html>

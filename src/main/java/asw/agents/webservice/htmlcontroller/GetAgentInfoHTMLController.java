@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import asw.agents.factory.ErrorFactory;
 import asw.agents.factory.ErrorFactory.Errors;
 import asw.agents.util.Check;
-import asw.agents.util.KindManager;
+import asw.agents.util.FilesManager;
 import asw.agents.webservice.responses.errors.ErrorResponse;
-import asw.dbmanagement.GetAgent;
+import asw.dbmanagement.FindAgent;
 import asw.dbmanagement.model.Agent;
 
 @Controller
 public class GetAgentInfoHTMLController {
 
 	@Autowired
-	private GetAgent getAgent;
+	private FindAgent getAgent;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String getLogin(HttpSession session, @RequestParam String identifier, @RequestParam String password,
@@ -36,16 +36,18 @@ public class GetAgentInfoHTMLController {
 		Check.passwordString(password);
 		Check.kindString(kind);
 
-		Agent agent = getAgent.getByIdentifier(identifier);
+		Agent agent = getAgent.execute(identifier);
 
 		Check.isNotNull(agent);
 		Check.isLoginCorrect(password, kind, agent);
+		
+		System.out.println(agent.getIdentifier());
 
 		session.setAttribute("agent", agent);
 
 		Integer kindCode = 0;
 		try {
-			kindCode = new KindManager().getKindCode(agent.getKind());
+			kindCode = FilesManager.getKindCode(agent.getKind());
 		} catch (IOException e) {
 			throw ErrorFactory.getError(Errors.INCORRECT_KIND);
 		}

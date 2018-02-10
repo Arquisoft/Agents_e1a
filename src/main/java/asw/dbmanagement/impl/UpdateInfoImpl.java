@@ -3,6 +3,7 @@ package asw.dbmanagement.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import asw.agents.util.Check;
 import asw.dbmanagement.UpdateInfo;
 import asw.dbmanagement.model.Agent;
 import asw.dbmanagement.repository.AgentRepository;
@@ -23,10 +24,12 @@ public class UpdateInfoImpl implements UpdateInfo {
 	 */
 	@Override
 	public void updateEmail(Agent agent, String email) {
-		if (email != null) {
-			agent.setEmail(email);
-			this.repository.save(agent);
-		}
+		Check.isValidEmailAddress(email);
+		Check.isNotEmailEmpty(email);
+		Check.isNotSameEmail(email, agent.getEmail());
+		agent.setEmail(email);
+		// TODO hace falta actualizar en el repositorio ??
+		this.repository.save(agent);
 	}
 
 	/**
@@ -36,13 +39,14 @@ public class UpdateInfoImpl implements UpdateInfo {
 	 */
 	@Override
 	public void updatePassword(Agent agent, String password, String newPassword) {
+		Check.passwordString(password);
+		Check.passwordString(newPassword);
+		Check.isSamePassword(password, agent.getPassword());
+		Check.isNotSamePassword(password, newPassword);
 
-		if (password != null && newPassword != null && !(password.equals(newPassword))
-				&& agent.getPassword().equals(password)) {
-			agent.setPassword(newPassword);
-			this.repository.save(agent);
-		}
-
+		agent.setPassword(newPassword);
+		// TODO hace falta actualizar en el repositorio esplícitamente??
+		this.repository.save(agent);
 	}
 
 }

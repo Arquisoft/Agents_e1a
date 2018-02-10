@@ -10,13 +10,11 @@ public class UnknownErrorResponse extends ErrorResponse {
 
 	@Override
 	public String getMessageJSONFormat() {
-		// TODO Auto-generated method stub
 		return "{\"reason\": \"Unknown error\"}";
 	}
 
 	@Override
 	public String getMessageStringFormat() {
-		// TODO Auto-generated method stub
 		return "Unknown error";
 	}
 

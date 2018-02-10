@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import asw.agents.util.KindManager;
+import asw.agents.util.FilesManager;
 import asw.dbmanagement.model.Agent;
 
 @XmlRootElement(name = "agent")
@@ -28,7 +28,7 @@ public class RespuestaInfoREST {
 		setId(agent.getIdentifier());
 		setKind(agent.getKind());
 		try {
-			setKindCode(new KindManager().getKindCode(kind));
+			setKindCode(FilesManager.getKindCode(kind));
 		} catch (IOException e) {
 			// TODO lanzar exepción ??
 		}
@@ -63,18 +63,22 @@ public class RespuestaInfoREST {
 		this.email = email;
 	}
 
+	@XmlElement
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	@XmlElement
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
 
+	@XmlElement
 	public void setKindCode(int kindCode) {
 		this.kindCode = kindCode;
 	}
 
+	@XmlElement
 	public void setLocation(String location) {
 		this.location = location;
 	}

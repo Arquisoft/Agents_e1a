@@ -17,8 +17,6 @@ public class Agent {
 
 	// Atributos del agente
 	private String nombre;
-	// @Embedded
-	// private Location location;
 	private String location;
 	@Column(unique = true)
 	private String email;
@@ -85,7 +83,7 @@ public class Agent {
 		return kind;
 	}
 
-	public /* Location */String getLocation() {
+	public String getLocation() {
 		return location;
 	}
 

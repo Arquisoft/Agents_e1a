@@ -24,16 +24,13 @@ public class ChangeInfoHTMLController {
 
 	@RequestMapping(value = "/confirmEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model) {
-		Check.isEmailEmpty(email);
-		Check.isEmailValid(email);
 
 		// Agent que se ha logeado antes
-		Agent p = (Agent) session.getAttribute("agent");
-		Check.isNotNull(p);
-		Check.isSameEmail(email, p.getEmail());
+		Agent agent = (Agent) session.getAttribute("agent");
+		Check.isNotNull(agent);
 
 		// Actualizo sus datos
-		updateInfo.updateEmail(p, email);
+		updateInfo.updateEmail(agent, email);
 
 		// Mensaje a mostrar en HTML
 		model.addAttribute("info", "Email actualizado correctamente");
@@ -48,14 +45,10 @@ public class ChangeInfoHTMLController {
 	@RequestMapping(value = "/confirmPassword", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
 			Model model) {
-		Check.passwordString(password);
-		Check.passwordString(newPassword);
-		Check.isSamePassword(password, newPassword);
-
+		
 		// Agent que se ha logeado antes
 		Agent p = (Agent) session.getAttribute("agent");
 		Check.isNotNull(p);
-		// TODO Check.isLoginCorrect(password, p);
 
 		// Actualizo sus datos
 		updateInfo.updatePassword(p, password, newPassword);

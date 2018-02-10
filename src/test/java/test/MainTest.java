@@ -29,9 +29,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import asw.Application;
-import asw.agents.util.KindManager;
+import asw.agents.util.FilesManager;
 import asw.agents.webservice.request.PeticionInfoREST;
-import asw.dbmanagement.GetAgent;
+import asw.dbmanagement.FindAgent;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -61,7 +61,7 @@ public class MainTest {
 	private RestTemplate template;
 
 	@Autowired
-	private GetAgent getAgent;
+	private FindAgent getAgent;
 
 	void print(String s) {
 		System.out.println(s);
@@ -74,9 +74,9 @@ public class MainTest {
 
 		// Se inicializan variables kindCode con los valores del fichero maestro
 		try {
-			kindPerson = new KindManager().getKindCode("Person");
-			kindSensor = new KindManager().getKindCode("Sensor");
-			kindEntity = new KindManager().getKindCode("Entity");
+			kindPerson = FilesManager.getKindCode("Person");
+			kindSensor = FilesManager.getKindCode("Sensor");
+			kindEntity = FilesManager.getKindCode("Entity");
 		} catch (IOException e) {
 			fail("Error de entrada salida al leer del fichero maestro tipos");
 		}
