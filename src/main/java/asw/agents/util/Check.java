@@ -53,7 +53,7 @@ public class Check {
 
 	public static void loginString(String login) {
 		if (isNull(login) || isEmpty(login)) {
-			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
+			throw ErrorFactory.getError(Errors.REQUIRED_USERNAME);
 		}
 	}
 
