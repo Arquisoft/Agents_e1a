@@ -2,6 +2,7 @@ package asw.agents.webservice.responses.errors;
 
 public abstract class ErrorResponse extends RuntimeException {
 
+	
 	public final static String KIND_IS_REQUIRED = "Kind is required";
 	public final static String LOGIN_INCORRECT = "Login Incorrect, check params";
 	public final static String INCORRECT_PASSWORD = "Password Incorrect";

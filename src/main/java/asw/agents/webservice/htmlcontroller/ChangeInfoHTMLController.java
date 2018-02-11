@@ -26,6 +26,8 @@ public class ChangeInfoHTMLController {
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model) {
 
 		// Agent que se ha logeado antes
+		
+		Check.isValidEmailAddress(email);
 		Agent agent = (Agent) session.getAttribute("agent");
 		Check.isNotNull(agent);
 

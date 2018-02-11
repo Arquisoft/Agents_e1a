@@ -39,7 +39,6 @@ public class ChangeInfoRESTController implements ChangeInfo {
 
 		Check.loginString(identifier);
 
-		// TODO este null
 		Agent agent = getAgent.execute(identifier);
 		Check.isNotNull(agent);
 

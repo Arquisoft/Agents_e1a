@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.uniovi.asw</groupId>
-	<artifactId>agents1a </artifactId>
+	<artifactId>agents1a</artifactId>
 	<name>agents1a</name>
 	<version>0.0.1</version>
 
@@ -108,7 +108,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>${maven-project-info-reports-plugin.version} </version>
 				<configuration>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
@@ -166,6 +165,4 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<url>https://github.com/Arquisoft/Agents_e1a</url>
-	<description>Prácticas de las asignatura Arquitectura del Software 2017-18</description>
 </project>
