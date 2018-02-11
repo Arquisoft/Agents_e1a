@@ -9,20 +9,10 @@ import asw.dbmanagement.model.Agent;
 
 public class Check {
 
-	/**
-	 * 
-	 * @param email
-	 * @return excepcion si esta vacio
-	 */
-	public static boolean isNotEmailEmpty(String email) {
-		if (email.trim().isEmpty())
-			throw ErrorFactory.getError(Errors.REQUIRED_USERNAME);
-		else
-			return false;
-	}
+
 
 	public static void isValidEmailAddress(String email) {
-		try {
+		try {			
 			new InternetAddress(email).validate();
 		} catch (AddressException ex) {
 			throw ErrorFactory.getError(Errors.WRONG_EMAIL_STYLE);
@@ -35,37 +25,24 @@ public class Check {
 
 	public static void isPetitionCorrect(String password, String kind, Agent agent) {
 		if (!password.equals(agent.getPassword()) || !kind.equals(agent.getKind())) {
-			throw ErrorFactory.getError(Errors.INCORRECT_LOGIN);
+			throw ErrorFactory.getError(Errors.INCORRECT_PETITION);
 		}
 	}
 
-	/**
-	 * 
-	 * @param agent
-	 * @return devuelve false si no es null o excepcion
-	 */
 	public static void isNotNull(Agent agent) {
 		if (isNull(agent)) {
 			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
 		}
 	}
 
-	public static <T> boolean isNull(T arg) {
+	private static <T> boolean isNull(T arg) {
 		return arg == null;
 	}
 
-	public static boolean isSameEmail(String email, String email2) {
-		if (email.equals(email2)) {
-			throw ErrorFactory.getError(Errors.SAME_EMAIL);
-		}
-		return true;
-	}
-
-	public static boolean isSamePassword(String p1, String p2) {
+	public static void isSamePassword(String p1, String p2) {
 		if (!p1.equals(p2)) {
 			throw ErrorFactory.getError(Errors.INCORRECT_PASSWORD);
 		}
-		return true;
 	}
 
 	public static void kindString(String kind) {

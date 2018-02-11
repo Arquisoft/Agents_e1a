@@ -25,8 +25,8 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 	private FindAgent findAgent;
 
 	@Override
-	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = { "Accept=application/json",
-			"Accept=application/xml" }, produces = { "application/json", "text/xml" })
+	@RequestMapping(value = "/agent", method = RequestMethod.POST, headers = { "Accept=application/json" }, produces = {
+			"application/json" })
 	public ResponseEntity<RespuestaInfoREST> getPOSTpetition(@RequestBody(required = true) PeticionInfoREST peticion) {
 
 		// Se comprueba que se han pasado correctamente los parámetros del login

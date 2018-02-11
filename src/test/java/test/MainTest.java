@@ -72,6 +72,7 @@ public class MainTest {
 	public void setUp() throws Exception {
 		this.base = new URL("http://localhost:" + port + "/");
 		template = new TestRestTemplate();
+		userURI = base.toString();// + "/user";
 
 		// Se inicializan variables kindCode con los valores del fichero maestro
 		try {
@@ -82,7 +83,6 @@ public class MainTest {
 			fail("Error de entrada salida al leer del fichero maestro tipos");
 		}
 
-		userURI = base.toString() + "/user";
 	}
 
 	@Test

@@ -3,7 +3,7 @@ package asw.agents.webservice.responses.errors;
 public abstract class ErrorResponse extends RuntimeException {
 
 	public final static String KIND_IS_REQUIRED = "Kind is required";
-	public final static String LOGIN_INCORRECT = "Login Incorrect";
+	public final static String LOGIN_INCORRECT = "Login Incorrect, check params";
 	public final static String INCORRECT_PASSWORD = "Password Incorrect";
 	public final static String KIND_IS_MISSING = "Internal error - Kind is missing in system master file";
 	public final static String REQUIRED_USERNAME = "The userName is required";
@@ -12,8 +12,8 @@ public abstract class ErrorResponse extends RuntimeException {
 	public final static String WRONG_EMAIL_STYLE = "Wrong Email Style";
 	public final static String INCORRECT_PASSWORD_DO_NOT_MATCH = " The passwords not match";
 	public final static String SAME_EMAIL = "same Email ";
-	public final static String KIND_FILE_ERROR = " Kind file error ";
-	public final static String UNKNOWN_ERROR = " Unknown error ";
+	public final static String KIND_FILE_ERROR = "Missing kind codes master file";
+	public final static String UNKNOWN_ERROR = " Unknown error";
 
 	private static final long serialVersionUID = 1L;
 
