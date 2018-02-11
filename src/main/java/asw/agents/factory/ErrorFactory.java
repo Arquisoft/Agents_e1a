@@ -1,10 +1,10 @@
 package asw.agents.factory;
 
 import asw.agents.webservice.responses.errors.ErrorResponse;
-import asw.agents.webservice.responses.errors.IncorrectLoginErrorResponse;
+import asw.agents.webservice.responses.errors.IncorrectPetitionErrorResponse;
 import asw.agents.webservice.responses.errors.IncorrectPasswordErrorResponse;
 import asw.agents.webservice.responses.errors.MissingKindCodeErrorResponse;
-import asw.agents.webservice.responses.errors.KindFileErrorResponse;
+import asw.agents.webservice.responses.errors.MissingKindCodesMasterFileErrorResponse;
 import asw.agents.webservice.responses.errors.PasswordDoNotMatchErrorResponse;
 import asw.agents.webservice.responses.errors.RequiredKindErrorResponse;
 import asw.agents.webservice.responses.errors.RequiredUserNameErrorResponse;
@@ -18,7 +18,7 @@ import asw.agents.webservice.responses.errors.WrongEmailStyleErrorResponse;
 public class ErrorFactory {
 
 	public static enum Errors {
-		INCORRECT_PASSWORD, REQUIRED_USERNAME, REQUIRED_PASSWORD, USER_NOT_FOUND, WRONG_EMAIL_STYLE, INCORRECT_PASSWORD_DO_NOT_MATCH, SAME_EMAIL, KIND_FILE_ERROR, REQUIRED_KIND, INCORRECT_LOGIN, INTERNAL_FAILURE_KIND_DOES_NOT_EXIST
+		INCORRECT_PASSWORD, REQUIRED_USERNAME, REQUIRED_PASSWORD, USER_NOT_FOUND, WRONG_EMAIL_STYLE, INCORRECT_PASSWORD_DO_NOT_MATCH, SAME_EMAIL, MISSING_KIND_CODES_MASTER_FILE_ERROR, REQUIRED_KIND, INCORRECT_PETITION, INTERNAL_FAILURE_KIND_DOES_NOT_EXIST
 	}
 
 	public static ErrorResponse getError(Errors error) {
@@ -39,10 +39,10 @@ public class ErrorFactory {
 			return new SameEmailErrorResponse();
 		case REQUIRED_KIND:
 			return new RequiredKindErrorResponse();
-		case KIND_FILE_ERROR:
-			return new KindFileErrorResponse();
-		case INCORRECT_LOGIN:
-			return new IncorrectLoginErrorResponse();
+		case MISSING_KIND_CODES_MASTER_FILE_ERROR:
+			return new MissingKindCodesMasterFileErrorResponse();
+		case INCORRECT_PETITION:
+			return new IncorrectPetitionErrorResponse();
 		case INTERNAL_FAILURE_KIND_DOES_NOT_EXIST:
 			return new MissingKindCodeErrorResponse();
 		default:// en caso de no conocer el error.

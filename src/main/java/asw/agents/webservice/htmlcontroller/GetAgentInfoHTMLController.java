@@ -47,7 +47,7 @@ public class GetAgentInfoHTMLController {
 		try {
 			kindCode = FilesManager.getKindCode(agent.getKind());
 		} catch (IOException e) {
-			throw ErrorFactory.getError(Errors.KIND_FILE_ERROR);
+			throw ErrorFactory.getError(Errors.MISSING_KIND_CODES_MASTER_FILE_ERROR);
 		}
 
 		session.setAttribute("kindCode", kindCode);

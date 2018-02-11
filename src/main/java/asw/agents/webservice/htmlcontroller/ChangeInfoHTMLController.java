@@ -27,11 +27,9 @@ public class ChangeInfoHTMLController {
 
 		// Agent que se ha logeado antes
 		
-		Check.isNotEmailEmpty(email);
 		Check.isValidEmailAddress(email);
 		Agent agent = (Agent) session.getAttribute("agent");
 		Check.isNotNull(agent);
-		Check.isSameEmail(email, agent.getEmail());
 
 		// Actualizo sus datos
 		updateInfo.updateEmail(agent, email);

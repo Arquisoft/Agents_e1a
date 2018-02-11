@@ -25,7 +25,6 @@ public class UpdateInfoImpl implements UpdateInfo {
 	@Override
 	public void updateEmail(Agent agent, String email) {
 		Check.isValidEmailAddress(email);
-		Check.isNotEmailEmpty(email);
 		Check.isNotSameEmail(email, agent.getEmail());
 		agent.setEmail(email);
 		// TODO hace falta actualizar en el repositorio ??

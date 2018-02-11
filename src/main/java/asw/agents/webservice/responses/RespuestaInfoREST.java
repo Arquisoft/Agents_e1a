@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import asw.agents.factory.ErrorFactory;
+import asw.agents.factory.ErrorFactory.Errors;
 import asw.agents.util.FilesManager;
 import asw.dbmanagement.model.Agent;
 
@@ -30,7 +32,7 @@ public class RespuestaInfoREST {
 		try {
 			setKindCode(FilesManager.getKindCode(kind));
 		} catch (IOException e) {
-			// TODO lanzar exepción ??
+			throw ErrorFactory.getError(Errors.MISSING_KIND_CODES_MASTER_FILE_ERROR);
 		}
 	}
 

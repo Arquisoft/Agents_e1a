@@ -37,9 +37,6 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String identifier = datos.getLogin();
 		String nuevoEmail = datos.getNewEmail();
 
-		
-		Check.isNotEmailEmpty(nuevoEmail);
-		Check.isNotEmailEmpty(identifier);
 		Check.loginString(identifier);
 
 		Agent agent = getAgent.execute(identifier);
@@ -60,7 +57,6 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String password = datos.getPassword();
 		String newPassword = datos.getNewPassword();
 
-		Check.isNotEmailEmpty(identifier);
 		Check.loginString(identifier);
 
 		Agent agent = getAgent.execute(identifier);
