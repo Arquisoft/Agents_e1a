@@ -30,6 +30,7 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 	public ResponseEntity<RespuestaInfoREST> getPOSTpetition(@RequestBody(required = true) PeticionInfoREST peticion) {
 
 		// Se comprueba que se han pasado correctamente los parámetros del login
+		Check.isNotEmailEmpty(peticion.getLogin());
 		Check.loginString(peticion.getLogin());
 		Check.passwordString(peticion.getPassword());
 		Check.kindString(peticion.getKind());
