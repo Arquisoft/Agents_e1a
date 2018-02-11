@@ -56,7 +56,7 @@ public class MainTest {
 		private int port;
 		private URL base;
 		private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
-		String userURI;
+		private String userURI;
 
 		private RestTemplate template;
 
@@ -64,9 +64,7 @@ public class MainTest {
 		@Autowired
 		private FindAgent getAgent;
 
-		void print(String s) {
-			System.out.println(s);
-		}
+	
 		
 		// Cabecera HTTP para pedir respuesta en XML
 			private class AcceptInterceptor implements ClientHttpRequestInterceptor {
@@ -264,9 +262,9 @@ public class MainTest {
 				new PeticionChangeEmailREST("usuarioRace","race@gmail.com"), String.class);
 		assertThat(response.getBody(), equalTo(correctChange));
 
-		correctChange = "{\"agent\":\"juan@hotmail.com\",\"message\":\"email actualizado correctamente\"}";
+		correctChange = "{\"agent\":\"juan@uniovi.es\",\"message\":\"email actualizado correctamente\"}";
 		response = template.postForEntity(userURI,
-				new PeticionChangeEmailREST("usuarioJuan","juan@hotmail.com"), String.class);
+				new PeticionChangeEmailREST("usuarioJuan","juan@uniovi.es"), String.class);
 		assertThat(response.getBody(), equalTo(correctChange));
 	}
 
@@ -342,7 +340,7 @@ public class MainTest {
 		assertThat(response.getBody(), equalTo(userNotFound));
 	}
 	
-	/*@Test No se porque no va este
+	@Test// No se porque no va este
 	public void t16sameEmailErrorChange() {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changeEmail";
@@ -359,7 +357,7 @@ public class MainTest {
 		response = template.postForEntity(userURI,
 				new PeticionChangeEmailREST("usuarioA6-PK27","tecnico@copinsa.es"), String.class);
 		assertThat(response.getBody(), equalTo(sameEmail));
-	}*/
+	}
 	
 	///CAMBIO DE PASSWORD tEST///
 	@Test
