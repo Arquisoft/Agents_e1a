@@ -137,7 +137,9 @@ public class MainTest {
 		// {"login": usuarioJuan, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,
 				new PeticionInfoREST("usuarioJuan", "password", "Person"), String.class);
+
 		String expected = "{\"name\":\"Juan\",\"location\":\"1.0,0.2\",\"email\":\"juan@uniovi.es\",\"id\":\"usuarioJuan\",\"kind\":\"Person\",\"kindCode\":"
+
 				+ kindPerson + "}";
 		assertThat(response.getBody(), equalTo(expected));
 
@@ -262,7 +264,7 @@ public class MainTest {
 				new PeticionChangeEmailREST("usuarioRace","race@gmail.com"), String.class);
 		assertThat(response.getBody(), equalTo(correctChange));
 
-		correctChange = "{\"agent\":\"juan@hotmail.com\",\"message\":\"email actualizado correctamente\"}";
+		correctChange = "{\"agent\":\"juan@uniovi.es\",\"message\":\"email actualizado correctamente\"}";
 		response = template.postForEntity(userURI,
 				new PeticionChangeEmailREST("usuarioJuan","juan@uniovi.es"), String.class);
 		assertThat(response.getBody(), equalTo(correctChange));
