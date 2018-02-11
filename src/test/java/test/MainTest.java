@@ -139,7 +139,7 @@ public class MainTest {
 		// {"login": usuarioJuan, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,
 				new PeticionInfoREST("usuarioJuan", "password", "Person"), String.class);
-		String expected = "{\"name\":\"Juan\",\"location\":\"1.0,0.2\",\"email\":\"juan@hotmail.es\",\"id\":\"usuarioJuan\",\"kind\":\"Person\",\"kindCode\":"
+		String expected = "{\"name\":\"Juan\",\"location\":\"1.0,0.2\",\"email\":\"juan@hotmail.com\",\"id\":\"usuarioJuan\",\"kind\":\"Person\",\"kindCode\":"
 				+ kindPerson + "}";
 		assertThat(response.getBody(), equalTo(expected));
 
