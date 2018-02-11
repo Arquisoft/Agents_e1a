@@ -41,7 +41,6 @@ import asw.agents.webservice.request.PeticionChangePasswordREST;
 import asw.agents.webservice.request.PeticionInfoREST;
 import asw.dbmanagement.FindAgent;
 import asw.dbmanagement.model.Agent;
-import test.MainTest.AcceptInterceptor;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -52,52 +51,53 @@ import test.MainTest.AcceptInterceptor;
 public class MainTest {
 
 	// Cabecera HTTP para pedir respuesta en XML
-	public class AcceptInterceptor implements ClientHttpRequestInterceptor {
-		@Override
-		public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
-				throws IOException {
-			HttpHeaders headers = request.getHeaders();
-			headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
-			return execution.execute(request, body);
-		}
-	}
-
-	@Value("${local.server.port}")
-	private int port;
-	private URL base;
-	private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
-	String userURI;
-
-	private RestTemplate template;
-
-	@SuppressWarnings("unused")
-	@Autowired
-	private FindAgent getAgent;
-
-	void print(String s) {
-		System.out.println(s);
-	}
-
-	@Before
-	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + port + "/");
-		template = new TestRestTemplate();
-
-		// Se inicializan variables kindCode con los valores del fichero maestro
-		try {
-			kindPerson = FilesManager.getKindCode("Person");
-			kindSensor = FilesManager.getKindCode("Sensor");
-			kindEntity = FilesManager.getKindCode("Entity");
-		} catch (IOException e) {
-			fail("Error de entrada salida al leer del fichero maestro tipos");
+		private class AcceptInterceptor implements ClientHttpRequestInterceptor {
+			@Override
+			public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
+					throws IOException {
+				HttpHeaders headers = request.getHeaders();
+				headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
+				return execution.execute(request, body);
+			}
 		}
 
-		userURI = base.toString() + "/user";
-	}
+		@Value("${local.server.port}")
+		private int port;
+		private URL base;
+		private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
+		String userURI;
+
+		private RestTemplate template;
+
+		@SuppressWarnings("unused")
+		@Autowired
+		private FindAgent getAgent;
+
+		void print(String s) {
+			System.out.println(s);
+		}
+
+		@Before
+		public void setUp() throws Exception {
+			this.base = new URL("http://localhost:" + port + "/");
+			template = new TestRestTemplate();
+
+			// Se inicializan variables kindCode con los valores del fichero maestro
+			try {
+				kindPerson = FilesManager.getKindCode("Person");
+				kindSensor = FilesManager.getKindCode("Sensor");
+				kindEntity = FilesManager.getKindCode("Entity");
+			} catch (IOException e) {
+				fail("Error de entrada salida al leer del fichero maestro tipos");
+			}
+
+			userURI = base.toString() + "/user";
+		}
 
 	///PRUEBAS DE DOMINIO//
 	
 	@Test
+
 	public void T1domainModelEqualsTest() {
 		Agent agent1 = getAgent.execute("usuarioJuan");
 		Agent agent2 = getAgent.execute("usuarioRa");
@@ -132,6 +132,7 @@ public class MainTest {
 	@Test
 	
 	public void T4peticionCorrecta() {
+
 		// Se prueba enviando parámetros de agentes que existen en la base de datos
 
 		// {"login": usuarioJuan, "password": password, "kind": Person}
@@ -158,14 +159,16 @@ public class MainTest {
 	}
 	
 	@Test
+
 	public void T5peticionNoExisteUsuario() {
+
 		// {"login": NO_EXISTE, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,
 				new PeticionInfoREST("NO_EXISTE", "password", "Person"), String.class);
 		String expected = "{\"reason\": \"User not found\"}";
-		print(response.getBody());
 		assertThat(response.getBody(), equalTo(expected));
 	}
+
 
 	@Test
 	public void T6incorrectLogin() {
@@ -500,5 +503,7 @@ public class MainTest {
 		assertThat(response.getBody(), equalTo(passwordIncorrect));
 	}
 	
+
+
 
 }
