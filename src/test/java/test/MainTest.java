@@ -440,7 +440,7 @@ public class MainTest {
 	public void t21samePasswordChange() {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changePassword";
-		String passwordRequired = "{\"reason\": \"Password Incorrect\"}";
+		String passwordRequired = "{\"reason\": \"Same password\"}";
 
 		response = template.postForEntity(userURI, new PeticionChangePasswordREST("usuarioJuan", "djfhr", "djfhr"),
 				String.class);
@@ -478,7 +478,7 @@ public class MainTest {
 	public void t23notSamePasswordChange() {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		String userURI = base.toString() + "/changePassword";
-		String passwordIncorrect = "{\"reason\": \"Password Incorrect\"}";
+		String passwordIncorrect = "{\"reason\": \"Same password\"}";
 
 		response = template.postForEntity(userURI, new PeticionChangePasswordREST("usuarioA6-PK27", "djfhr", "djfhr"),
 				String.class);

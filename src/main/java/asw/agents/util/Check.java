@@ -87,10 +87,4 @@ public class Check {
 		
 	}
 
-	public static void validUser(String identifier, String password) {
-		loginString(identifier);
-		passwordString(password);
-		
-	}
-
 }

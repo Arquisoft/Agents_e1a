@@ -11,7 +11,7 @@ public abstract class ErrorResponse extends RuntimeException {
 	public final static String REQUIRED_PASSWORD = "The password is required";
 	public final static String USER_NOT_FOUND = "User not found";
 	public final static String WRONG_EMAIL_STYLE = "Wrong mail style";
-	public final static String INCORRECT_PASSWORD_DO_NOT_MATCH = " The passwords not match";
+	public final static String INCORRECT_PASSWORD_DO_NOT_MATCH = "Same password";
 	public final static String SAME_EMAIL = "Same email ";
 	public final static String KIND_FILE_ERROR = "Missing kind codes master file";
 	public final static String UNKNOWN_ERROR = " Unknown error";

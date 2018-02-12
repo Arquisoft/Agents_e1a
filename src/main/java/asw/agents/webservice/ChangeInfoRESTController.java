@@ -68,14 +68,15 @@ public class ChangeInfoRESTController implements ChangeInfo {
 
 		// Se comprueba que el agent existe
 		Check.isNotNull(agent);
-
-		// Se comprueba que el agent cuyo identificador es pasado tenga la contraseña
-		// pasada
-		Check.isPetitionCorrect(password, agent.getKind(), agent);
 		
 		// Se comprueba la nueva contraseña
 		Check.passwordString(newPassword);
 		Check.isNotSamePassword(password, newPassword);
+		
+		// Se comprueba que el agent cuyo identificador es pasado tenga la contraseña
+		// pasada
+		Check.isPetitionCorrect(password, agent.getKind(), agent);
+
 
 		updateInfo.updatePassword(agent, password, newPassword);
 
