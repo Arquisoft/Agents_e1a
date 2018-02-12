@@ -54,7 +54,6 @@ public class MainTest {
 	private int port;
 	private URL base;
 	private int kindPerson = 0, kindSensor = 0, kindEntity = 0;
-	private String userURI;
 
 	private RestTemplate template;
 
@@ -74,7 +73,7 @@ public class MainTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + port + "/");
+		this.base = new URL("http://localhost:" + port);
 		template = new TestRestTemplate();
 
 		// Se inicializan variables kindCode con los valores del fichero maestro
@@ -85,8 +84,6 @@ public class MainTest {
 		} catch (IOException e) {
 			fail("Error de entrada salida al leer del fichero maestro tipos");
 		}
-
-		userURI = base.toString() + "/agent";
 	}
 
 	/// PRUEBAS DE DOMINIO//
@@ -127,6 +124,7 @@ public class MainTest {
 
 	public void t4peticionCorrecta() {
 
+		String userURI = base.toString() + "/agent";
 		// Se prueba enviando parámetros de agentes que existen en la base de datos
 
 		// {"login": usuarioJuan, "password": password, "kind": Person}
@@ -157,6 +155,7 @@ public class MainTest {
 	@Test
 
 	public void t5peticionNoExisteUsuario() {
+		String userURI = base.toString() + "/agent";
 
 		// {"login": NO_EXISTE, "password": password, "kind": Person}
 		ResponseEntity<String> response = template.postForEntity(userURI,

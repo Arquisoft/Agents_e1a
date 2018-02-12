@@ -38,9 +38,13 @@ public class GetAgentInfoHTMLController {
 
 		Agent agent = getAgent.execute(identifier);
 
+		// Se comprueba que el agente exista en la base de datos
 		Check.isNotNull(agent);
+
+		// Se valida el usuario
 		Check.isPetitionCorrect(password, kind, agent);
 
+		// se pasa el agente a las session
 		session.setAttribute("agent", agent);
 
 		Integer kindCode = 0;
@@ -50,6 +54,7 @@ public class GetAgentInfoHTMLController {
 			throw ErrorFactory.getError(Errors.MISSING_KIND_CODES_MASTER_FILE_ERROR);
 		}
 
+		// se pasa el tipo a la session
 		session.setAttribute("kindCode", kindCode);
 
 		return "datosAgent";

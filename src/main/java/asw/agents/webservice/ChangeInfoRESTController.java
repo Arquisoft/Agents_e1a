@@ -40,7 +40,14 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		Check.loginString(identifier);
 
 		Agent agent = getAgent.execute(identifier);
+		
+		// Se comprueba que el agent exista en la base de datos
 		Check.isNotNull(agent);
+		
+		// Se comprueba la validez de la nueva dirección de email
+		Check.isValidEmailAddress(nuevoEmail);
+		Check.isNotSameEmail(agent.getEmail(), nuevoEmail);
+		
 
 		updateInfo.updateEmail(agent, nuevoEmail);
 
@@ -57,10 +64,18 @@ public class ChangeInfoRESTController implements ChangeInfo {
 		String password = datos.getPassword();
 		String newPassword = datos.getNewPassword();
 
-		Check.loginString(identifier);
-
 		Agent agent = getAgent.execute(identifier);
+
+		// Se comprueba que el agent existe
 		Check.isNotNull(agent);
+
+		// Se comprueba que el agent cuyo identificador es pasado tenga la contraseña
+		// pasada
+		Check.isPetitionCorrect(password, agent.getKind(), agent);
+		
+		// Se comprueba la nueva contraseña
+		Check.passwordString(newPassword);
+		Check.isNotSamePassword(password, newPassword);
 
 		updateInfo.updatePassword(agent, password, newPassword);
 

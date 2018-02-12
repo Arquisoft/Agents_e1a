@@ -23,16 +23,18 @@ public class ChangeInfoHTMLController {
 	private UpdateInfo updateInfo;
 
 	@RequestMapping(value = "/confirmEmail", method = RequestMethod.POST)
-	public String changeEmail(HttpSession session, @RequestParam String email, Model model) {
+	public String changeEmail(HttpSession session, @RequestParam String nuevoEmail, Model model) {
 
 		// Agent que se ha logeado antes
-		
-		Check.isValidEmailAddress(email);
 		Agent agent = (Agent) session.getAttribute("agent");
 		Check.isNotNull(agent);
 
+		// Se comprueba el nuevo email
+		Check.isValidEmailAddress(nuevoEmail);
+		Check.isNotSameEmail(agent.getEmail(), nuevoEmail);
+		
 		// Actualizo sus datos
-		updateInfo.updateEmail(agent, email);
+		updateInfo.updateEmail(agent, nuevoEmail);
 
 		// Mensaje a mostrar en HTML
 		model.addAttribute("info", "Email actualizado correctamente");

@@ -24,6 +24,8 @@ public class Check {
 	}
 
 	public static void isPetitionCorrect(String password, String kind, Agent agent) {
+		passwordString(password);
+		kindString(kind);
 		if (!password.equals(agent.getPassword()) || !kind.equals(agent.getKind())) {
 			throw ErrorFactory.getError(Errors.INCORRECT_PETITION);
 		}
@@ -82,6 +84,12 @@ public class Check {
 		if(isNull(kindCode)) {
 			throw ErrorFactory.getError(Errors.INTERNAL_FAILURE_KIND_DOES_NOT_EXIST);
 		}
+		
+	}
+
+	public static void validUser(String identifier, String password) {
+		loginString(identifier);
+		passwordString(password);
 		
 	}
 
